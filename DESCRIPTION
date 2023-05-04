@@ -1,10 +1,19 @@
 Package: FiringSeriation
-Title: What the Package Does (One Line, Title Case)
+Title: Replication of Frerebeau, N. (2023)
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: MIT + file LICENSE
+Authors@R:
+    person(given = "Nicolas",
+           family = "Frerebeau",
+           role = c("aut", "cre"),
+           email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+           comment = c(ORCID = "0000-0001-5759-4944"))
+Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
+Description: Research compendium of Frerebeau, N. (2023). 
+    The compendium contains all data, code, and text associated with this paper.
+URL: http://github.com/nfrerebeau/FiringSeriation
+BugReports: http://github.com/nfrerebeau/FiringSeriation/issues
+Depends: R (>= 4.3.0)
+License: GPL (>= 3)
 ByteCompile: true
 Encoding: UTF-8
 LazyData: true
