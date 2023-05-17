@@ -1,0 +1,88 @@
+"sample","material","site","stratigraphy","artefact","part","decoration","LOI","site_type","phase"
+"BDX14914","clay","Mas de Moreno","15312","unknown","rim",0,19.48,"production",2
+"BDX14917","clay","Mas de Moreno","15312","kalathos","rim",0,18.76,"production",2
+"BDX14918","clay","Mas de Moreno","15312","unknown","body",0,18.91,"production",2
+"BDX14920","clay","Mas de Moreno","15312","unknown","body",0,18.52,"production",2
+"BDX14921","clay","Mas de Moreno","15312","unknown","floor",0,18.32,"production",2
+"BDX14922","clay","Mas de Moreno","15312","unknown","handle",0,20.69,"production",2
+"BDX14924","clay","Mas de Moreno","15312","unknown","body",0,18.64,"production",2
+"BDX14925","clay","Mas de Moreno","15312","unknown","body",0,18.53,"production",2
+"BDX14926","clay","Mas de Moreno","15312","unknown","body",0,19.92,"production",2
+"BDX15030","clay","Mas de Moreno","15205","loom weight","body",0,19.99,"production",2
+"BDX15031","clay","Mas de Moreno","15205","loom weight","body",0,20.59,"production",2
+"BDX15032","ceramic","Mas de Moreno","12212","storage jar","rim",0,13.15,"production",1
+"BDX15033","ceramic","Mas de Moreno","12212","storage jar","rim",0,14.87,"production",1
+"BDX15034","ceramic","Mas de Moreno","12212","storage jar","body",0,13.31,"production",1
+"BDX15035","ceramic","Mas de Moreno","12212","storage jar","body",0,12.98,"production",1
+"BDX15036","ceramic","Mas de Moreno","12212","storage jar","rim",0,13.76,"production",1
+"BDX15037","ceramic","Mas de Moreno","12212","storage jar","rim",0,6.76,"production",1
+"BDX15038","ceramic","Mas de Moreno","12212","jar","rim",0,7.78,"production",1
+"BDX15040","ceramic","Mas de Moreno","12212","lid","rim",1,14.78,"production",1
+"BDX15041","ceramic","Mas de Moreno","12212","storage jar","body",1,11.35,"production",1
+"BDX15042","ceramic","Mas de Moreno","12212","lid","rim",1,14.4,"production",1
+"BDX15043","ceramic","Mas de Moreno","12212","lid","rim",1,14.79,"production",1
+"BDX15044","ceramic","Mas de Moreno","12212","loom weight","body",0,10.93,"production",1
+"BDX15045","ceramic","Mas de Moreno","12212","loom weight","body",0,10.8,"production",1
+"BDX15053","ceramic","Mas de Moreno","12212","cup","rim",0,8.89,"production",1
+"BDX15054","ceramic","Mas de Moreno","12212","urn","rim",0,NA,"production",1
+"BDX15445","ceramic","Mas de Moreno","15205","loom weight","body",0,5.57,"production",2
+"BDX15446","ceramic","Mas de Moreno","15205","storage jar","rim",0,13.96,"production",2
+"BDX15448","ceramic","Mas de Moreno","15205","storage jar","rim",0,13.54,"production",2
+"BDX15449","ceramic","Mas de Moreno","15205","storage jar","fond",0,12.03,"production",2
+"BDX15450","ceramic","Mas de Moreno","15205","pot","rim",0,6.83,"production",2
+"BDX15451","ceramic","Mas de Moreno","15205","pot","body",1,9.41,"production",2
+"BDX15452","ceramic","Mas de Moreno","15205","plate","rim",1,8.11,"production",2
+"BDX15453","ceramic","Mas de Moreno","15205","lid","rim",1,7.17,"production",2
+"BDX15457","ceramic","Mas de Moreno","15205","cup","rim",1,5.81,"production",2
+"BDX15461","ceramic","Mas de Moreno","15227","storage jar","rim",1,9.86,"production",2
+"BDX15464","ceramic","Mas de Moreno","15227","pot","rim",1,5.1,"production",2
+"BDX15465","ceramic","Mas de Moreno","15227","loom weight","body",0,7.4,"production",2
+"BDX15466","ceramic","Mas de Moreno","15227","pot","rim",1,7.16,"production",2
+"BDX15468","ceramic","Mas de Moreno","15227","cup","rim",1,12.26,"production",2
+"BDX15473","ceramic","Mas de Moreno","15227","kalathos","rim",1,16.71,"production",2
+"BDX15640","ceramic","Mas de Moreno","13138","amphorae","neck",0,7.05,"production",3
+"BDX15641","ceramic","Mas de Moreno","13138","amphorae","neck",0,15.19,"production",3
+"BDX15643","ceramic","Mas de Moreno","13169","storage jar","rim",0,10.97,"production",3
+"BDX15644","ceramic","Mas de Moreno","13169","lid","rim",1,NA,"production",3
+"BDX15647","ceramic","Mas de Moreno","13169","kalathos","rim",1,6.36,"production",3
+"BDX15649","ceramic","Mas de Moreno","13169","cup","rim",0,6.54,"production",3
+"BDX15651","ceramic","Mas de Moreno","13169","storage jar","rim",1,8.26,"production",3
+"BDX15652","ceramic","Mas de Moreno","13169","kalathos","rim",1,6.73,"production",3
+"BDX15653","ceramic","Mas de Moreno","13169","unknown","rim",0,5.85,"production",3
+"BDX15654","ceramic","Mas de Moreno","13169","kalathos","rim",1,5.8,"production",3
+"BDX15659","ceramic","Mas de Moreno","13169","tile","body",0,9.28,"production",3
+"BDX15660","ceramic","Mas de Moreno","21041","cup","body",1,5.53,"production",3
+"BDX15661","ceramic","Mas de Moreno","21041","cup","rim",1,6.84,"production",3
+"BDX15662","ceramic","Mas de Moreno","21041","cup","rim",0,9.21,"production",3
+"BDX15663","ceramic","Mas de Moreno","21041","loom weight","body",0,5.77,"production",3
+"BDX15664","ceramic","Mas de Moreno","21041","pot","rim",0,3.52,"production",3
+"BDX15665","ceramic","Mas de Moreno","21041","cup","body",1,7.37,"production",3
+"BDX15666","ceramic","Mas de Moreno","21041","storage jar","rim",0,6.09,"production",3
+"BDX15668","ceramic","Mas de Moreno","21041","cup","rim",1,4.92,"production",3
+"BDX15669","ceramic","Mas de Moreno","21041","goblet","rim",0,8.19,"production",3
+"BDX15671","ceramic","Torre Cremada","E11.84","unknown","body",1,5.65,"consumption",0
+"BDX15673","ceramic","Torre Cremada","E11.85","unknown","body",1,4.87,"consumption",0
+"BDX15674","ceramic","Torre Cremada","E11.86","unknown","rim",1,3.41,"consumption",0
+"BDX15675","ceramic","Torre Cremada","E11.84","unknown","rim",0,7.26,"consumption",0
+"BDX15676","ceramic","Torre Cremada","E11.60","storage jar","rim",0,7.7,"consumption",0
+"BDX15679","ceramic","Torre Cremada","E11.60","storage jar","body",0,7.4,"consumption",0
+"BDX15680","ceramic","Torre Cremada","E9.75","storage jar","body",0,6.28,"consumption",0
+"BDX16441","ceramic","El Palao","25146","unknown","rim",0,12.76,"consumption",0
+"BDX16443","ceramic","El Palao","25146","unknown","rim",1,16.48,"consumption",0
+"BDX16444","ceramic","El Palao","25146","unknown","rim",0,3.15,"consumption",0
+"BDX16445","ceramic","El Palao","25117","unknown","rim",1,7.87,"consumption",0
+"BDX16446","ceramic","El Palao","25117","unknown","rim",1,14.01,"consumption",0
+"BDX16447","ceramic","El Palao","25117","unknown","rim",0,33.2,"consumption",0
+"BDX16449","ceramic","El Palao","25117","unknown","rim",1,5.78,"consumption",0
+"BDX16451","ceramic","El Palao","25117","storage jar","rim",1,11.27,"consumption",0
+"BDX16452","ceramic","El Palao","25117","unknown","rim",1,10.82,"consumption",0
+"BDX16453","ceramic","El Palao","25117","unknown","rim",1,8.48,"consumption",0
+"BDX17428","ceramic","Mas de Moreno","15227","cup","body",0,1.37,"production",2
+"BDX17429","ceramic","Mas de Moreno","15227","cup","rim",0,2.13,"production",2
+"BDX17430","ceramic","Mas de Moreno","15227","common ware","body",0,1.18,"production",2
+"BDX17431","ceramic","Mas de Moreno","15227","cup","body",0,1.87,"production",2
+"BDX17432","ceramic","Mas de Moreno","15227","cup","body",0,1.5,"production",2
+"BDX17433","ceramic","Mas de Moreno","15227","common ware","body",0,0.75,"production",2
+"BDX17434","ceramic","Mas de Moreno","12138","storage jar","body",0,0.77,"production",1
+"BDX17435","ceramic","Mas de Moreno","12138","storage jar","body",0,0.85,"production",1
+"BDX22203","ceramic","Mas de Moreno","15227","cup","body",0,0.64,"production",2
