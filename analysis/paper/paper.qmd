@@ -87,13 +87,94 @@ The EFT is certainly practical, but it raises several methodological and concept
 
 This study therefore proposes a new method, based on multivariate analysis of powder X-ray diffraction (XRD) data, which aims to provide an alternative to the EFT framework. This method is based on the principle of parsimony with two main objectives: (1) to avoid the use of external references (whether experimental or ethnographic data); (2) to build the simplest possible model by limiting the number of hypotheses involved.
 
-XRD analysis from archaeological ceramics allows the identification of the main minerals and special attention is usually paid to the presence (or absence) of mineralogical phases formed during firing. Quantitative analysis of XRD data faces major difficulties, as archaeological ceramics are multiphase systems, often poorly crystallised, with amorphous content. The estimation of quantitative mineralogical compositions, by the RIR method [@hubbard1988] or the Rietvelt refinement [@rietveld1969], is a very difficult, high skilled exercise, assuming a thorough knowledge of the material (and expensive databases).
+XRD analysis of archaeological ceramics allows the identification of the main minerals and special attention is usually paid to the presence (or absence) of mineralogical phases formed during firing. Quantitative analysis of XRD data faces major difficulties, as archaeological ceramics are multiphase systems, often poorly crystallised, with amorphous content. The estimation of quantitative mineralogical compositions, by the RIR method [@hubbard1988] or the Rietvelt refinement [@rietveld1969], is a very difficult, high skilled exercise, assuming a thorough knowledge of the material (and expensive databases).
 
-In this study, we show that it is possible to successfully use correspondence analysis of X-ray diffractograms to assess the firing of ceramic materials. The properties of correspondence analysis and its links with matrix seriation enable to characterise the firing of a ceramic assemblage and to identify the outliers. Thus, calibration data sets can be produced on the only basis of archaeological evidence to assess ceramic firing practices across a cultural area, avoiding the use of laboratory references.
+In this study, we show that it is possible to successfully use correspondence analysis (CA) of X-ray diffractograms to assess the firing of ceramic materials. The properties of correspondence analysis and its links with matrix seriation enable to characterise the firing of a ceramic assemblage and to identify the outliers. Thus, calibration data sets can be produced on the only basis of archaeological evidence to assess ceramic firing practices across a cultural area, avoiding the use of laboratory references.
 
-As an illustration of this method, we examine XRD data of Iron Age ceramics from an Iberian workshop. The Mas de Moreno workshop is located in the province of Teruel (Aragon, Spain), in the municipality of Foz-Calanda. The activity of the workshop is established between 225-200 BC and 40-30 AD. A first archaeological synthesis of the workshop has highlighted three successive phases of activity, characterised by successive changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, which were discontinued and destroyed around 50-40 BC [@gorgues2012]. The use of an amphora kiln, of much larger dimensions than the previous kilns, as well as the production of Roman amphora and the presence of Latin epigraphy, illustrate a major reorganisation of the workshop in the middle of the 1^st^ century. The workshop's activity ceased during the following decade, mostly as a result of the territorial reorganisation under Roman influence and the distance from the trade routes [@gorgues2012]. This workshop thus constitutes a context well suited to investigate the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
+As an illustration of this method, we examine XRD data of Iron Age ceramics from an Iberian workshop. The Mas de Moreno workshop is located in the province of Teruel (Aragon, Spain), in the municipality of Foz-Calanda. The activity of the workshop spans between 225-200 BC and 40-30 AD. A first archaeological synthesis of the workshop has highlighted three successive phases of activity, characterised by successive changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, which were discontinued and destroyed around 50-40 BC [@gorgues2012]. The use of an amphora kiln, of much larger dimensions than the previous kilns, as well as the production of Roman amphora and the presence of Latin epigraphy, illustrate a major reorganisation of the workshop in the middle of the 1^st^ century. The workshop's activity ceased during the following decade, mostly as a result of the territorial reorganisation under Roman influence and the distance from the trade routes [@gorgues2012]. This workshop thus constitutes a context well suited to investigate the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
 
 # METHODS
+## Archaeological samples
+
+Sampling was carried out in such a way that each sample was taken from a single artifact. Particular attention was paid to the risk of contamination by systematically discarding sherds that had been glued back together or that had undergone any chemical treatment.
+
+```{r}
+#| label: archaeological-data
+## Read archaeological data
+corpus <- here::here("analysis/data/raw_data/corpus.csv") |>
+  read.table(sep = ",", dec = ".", header = TRUE, encoding = "UTF-8")
+```
+
+`r sum(corpus$material == "ceramic" & corpus$site == "Mas de Moreno")` ceramics from the Mas de Moreno workshop were sampled to represent the entire period of the workshop's activity (@tbl-corpus). The ceramic material of the Mas de Moreno consists only of products known as Iberian painted/fine wares. It refers to a wheel thrown production, with a pink uniform colour and a dark red painted decor, with no temper visible to the naked eye and considered to be fired at high temperatures in an oxidizing atmosphere [@tarradell1980; @mata1992; @collconesa2000].
+
+```{r}
+#| label: tbl-corpus
+#| tbl-cap: "Ceramic and clay samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. LOI: loss on ignition [see @frerebeau2020a]."
+knitr::kable(
+  x = corpus[order(corpus$sample), !(colnames(corpus) %in% c("site_type", "decoration"))],
+  col.names = c("Sample", "Material", "Site", "Stratigraphic Unit", "Phase", "Type", "Part", "LOI (%)")
+)
+```
+
+Although Iberian fine wares present a significant technological uniformity [@tarradell1980], the sampling was conducted in such a way that all types of pottery produced in the workshop were included in the study (non-Iberian types produced at the end of the workshop's activity period were also sampled).
+
+A number of fragments of unfired potteries were also found during the excavation of the workshop [for a complete presentation of these unfired potsherds, see @frerebeau2017]. Of these, `r sum(corpus$material == "clay" & corpus$site == "Mas de Moreno")` samples have been analysed here (@tbl-corpus).
+
+Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled (@tbl-corpus). These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dates between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study.
+
+## Powder X-ray diffraction
+The mineralogical composition of the samples was determined by X-ray powder diffraction. The outer surfaces of all the samples were mechanically removed prior to analysis, then about 1 g of material per sample was manualy powdered in an agate mortar.
+
+The data were collected at room temperature with a D8 Advance (Bruker) diffractometer in Bragg-Brentano configuration working at 1.6 kW (40 kV, 40 mA) and equipped with a copper anode source ($k_{\alpha1}$ = 1.5406 ; the $k_\beta$ ray being removed by a Ni-filter in the diffracted beam). An 8 mm anti-scattering slit was mounted in front of the LynxEye© CCD detector. The explored area covered the 3-70° ($2\theta$) range, with an angle step of 0.02° and a time step of 2 seconds (the sample being rotated during the analysis). The stability of the instrument was checked between the different series of measurements by analyzing a standard (corundum crystal, NIST 1976).
+
+All diffractograms were processed in the same way:
+
+1. $k_{\alpha2}$ lines were stripped using penalized likelihood [@derooi2014];
+1. All diffractograms were checked for possible sample displacements, due to inaccurate powder sample mounting, then shifted accordingly (using quartz as an internal standard);
+1. All diffractograms were realigned to a common angular scale, using linear interpolation between data points;
+1. Baselines were estimated using iterative mean suppression [4S Peak Filling, @liland2015], then removed (negative values due to baseline subtraction were replaced by zeros);
+1. Data points below 4° ($2\theta$) and above 54° ($2\theta$) were removed.
+
+## Correspondence analysis
+
+We will only briefly recall the main aspects of correspondence analysis, as a detailed review of its mathematical properties is beyond the scope of this article [for an in-depth discussion, see @greenacre2007; @lebart2006].
+
+Correspondence analysis (CA) is similar to principal component analysis (PCA) in that it allows to describe the statistical relationships that can exist between individuals and variables. Unlike PCA, CA analyses the differences between relative values and it considers both individuals and variables at the same time (this allows for the projection of row and column points in the same coordinate space). CA studies the inertia of the scatterplot (i.e. the weighted sum of the $\chi2$ distances of each point to the centroid) to create orthogonal components, so that a maximum of the total inertia is represented on the first component, a maximum of the residual inertia on the component, and so on until the last dimension. Instead of maximizing variance, CA maximizes the correspondence between individuals and variables.
+
+## Computational environment
+
+```{r}
+#| label: bib-packages
+# Créer automatiquement une bibliographie des packages R utilisés
+dep <- here::here("DESCRIPTION") |> readLines()
+dep <- dep[seq(from = grep(pattern = "Imports", x = dep) + 1, 
+               to = max(grep(pattern = "^[[:space:]]", x = dep)))]
+dep <- gsub("[[:space:][:punct:][:digit:]]*", "", dep)
+dep <- c(dep, "base") # Add R base
+
+cite <- lapply(
+  X = dep,
+  FUN = function(x) {
+    bib <- try(citation(x), silent = FALSE)
+    if (inherits(bib, "try-error")) return(NULL)
+    entry <- utils::toBibtex(bib)
+    entry[1] <- sub("\\{,$", sprintf("{R-%s,", x), entry[1])
+    entry
+  }
+)
+here::here("analysis/paper/packages.bib") |> 
+  cat(unlist(cite), file = _, sep = "\n")
+
+pkg <- vapply(
+  X = dep[dep != "base"], 
+  FUN = function(x) {
+    sprintf("`%s` %s [@R-%s]", x, packageVersion(x), x)
+  }, 
+  FUN.VALUE = character(1)
+)
+```
+
+All the data processing and statistical analysis were performed with `r R.version$version.string` [@R-base] and the following packages: `r paste0(pkg, collapse = ", ")`. The R code is openly available in @frerebeau2023a and allows to replicate all the results presented below.
 
 # RESULTS
 
