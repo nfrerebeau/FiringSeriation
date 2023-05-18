@@ -1,38 +1,32 @@
 ---
-title: "Title Goes Here"
+title: "Assessing the Firing of Ceramic Materials: a Seriation-Based Approach"
 author:
-  - Jane Doe:
+  - Nicolas Frerebeau:
       correspondence: "yes"
-      email: janedoe@fosg.org
-      orcid: 0000-0003-1689-0557
-      institute:
-        - fosg
-        - fop
-  - John Q. Doe:
-      institute: fosg
-      orcid: 0000-0003-1689-0558
-  - Peder Ås:
-      institute: fosg
-      orcid: 0000-0003-1689-0559
-  - Juan Pérez:
-      orcid: 0000-0003-1689-0551
-      institute:
-        - name: Acme Corporation
-  - Max Mustermann:
-      orcid: 0000-0003-1689-0552
-institute:
-  - fosg:
-      name: Formatting Open Science Group
-      address: 23 Science Street, Eureka, Mississippi, USA
-  - fop: Federation of Planets
+      email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+      orcid: 0000-0001-5759-4944
+      affiliations:
+        - name: "UMR 6034 Archéosciences Bordeaux"
+          address: "Maison de l'Archéologie, Université Bordeaux Montaigne"
+          city: Pessac cedex
+          country: France
+          postal-code: 33607
+          url: https://www.archeosciences-bordeaux.fr
 title-block-published: "Last updated"  
 date: now
 date-format: long
 format: 
+  pdf: 
+    documentclass: scrartcl
+    classoption: 
+      - french
+      - 12pt
+      - a4paper
+      - oneside
   docx:
     reference-doc: "../templates/template.docx" # Insert path for the DOCX file
 execute:
-  echo: true
+  echo: false
   warning: false
   message: false
   comment: "#>"
@@ -42,72 +36,86 @@ filters:
   - ../templates/scholarly-metadata.lua
   - ../templates/author-info-blocks.lua
   - ../templates/pagebreak.lua
-bibliography: references.bib
-csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+bibliography: [references.bib, packages.bib]
+csl: "../templates/elsevier-harvard.csl"
 abstract: |
   Text of abstract
 keywords: |
-  keyword 1; keyword 2; keyword 3
+  XRD; ceramic firing; correspondence analysis; matrix seriation
 highlights: |
   These are the highlights. 
 ---
 
-<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
+```{r}
+#| label: setup
+options(knitr.kable.NA = "")
+```
 
-<!-- With the following code you can access and display values from the yml header above. -->
 
 Keywords: `r rmarkdown::metadata$keywords`
 
 Highlights: `r rmarkdown::metadata$highlights`
 
-<!-- The actual document text starts here: -->
-
-# Introduction
-
-Here is a citation [@Marwick2017]
-
-# Background
-
-# Methods
-
-# Results
-
-<!-- Here's some example analysis code: -->
-
 ```{r}
-#| label: get-data
-#| eval: false
-# Note the path that we need to use to access our data files when rendering this document
-my_data <- read.csv(here::here('analysis/data/raw_data/my_csv_file.csv'))
+#| label: graphical-abstract
+#| fig-align: center
+#| out.width: "4in"
+knitr::include_graphics(here::here("analysis/figures/abstract.png"))
 ```
-
-```{r}
-#| label: fig-demo-plot
-#| fig-cap: "A plot of random numbers"
-plot(rnorm(10))
-```
-
-@fig-demo-plot shows how we can have a caption and cross-reference for a plot. Note that figure label and cross-references must both be prefixed with `fig-`
-
-```{r}
-#| label: demo-inline-code
-#| echo: false
-x <- round(pi, 2)
-```
-
-Here is an example of inline code `r x` in the middle of a sentence.
-
-# Discussion
-
-# Conclusion
-
-# Acknowledgements
-
-<!-- The following line inserts a page break  -->
 
 \newpage
 
-# References
+# License {-}
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+# Change record {-}
+
+| **Version** | **Date**   | **Description**            | **DOI** |
+|------------:|-----------:|:---------------------------|:--------|
+| 0.0.0.9000  |  |  |  |
+
+\newpage
+
+<!-- The actual document text starts here: -->
+
+# INTRODUCTION
+
+Firing is a "strategic step" [@lemonnier1983a] of the ceramic production process, especially as it involves an economic risk: that of losing all or part of the load to be fired and as much human labour time. The study of the firing of archaeological ceramics is thus a key factor in the interpretation of ancient techniques and the related social practices. To this end, important methodological research has been carried out since the pioneering work of @shepard1936. This led to the wide use of the so-called *Equivalent Firing Temperatures* (EFT) as a way to describe the firing of archaeological ceramics [@tite1969; @tite1969a]. The EFT is a point estimator tied to standard experimental conditions: "[EFT] is that temperature maintained for one hour which would produce the observed mineralogy or microstructure" [@tite1995].
+
+The EFT is certainly practical, but it raises several methodological and conceptual problems. A full review is beyond the scope of this study, but two points can be made. On the one hand, EFT creates unnecessary ambiguity about the real firing temperature (assuming that the firing temperatures have archaeological significance). On the other hand, @gosselain1992 and @livingstonesmith2001 have demonstrated the limits of this framework, which may lead to anachronistic reasoning [@frerebeau2018].
+
+This study therefore proposes a new method, based on multivariate analysis of powder X-ray diffraction (XRD) data, which aims to provide an alternative to the EFT framework. This method is based on the principle of parsimony with two main objectives: (1) to avoid the use of external references (whether experimental or ethnographic data); (2) to build the simplest possible model by limiting the number of hypotheses involved.
+
+XRD analysis from archaeological ceramics allows the identification of the main minerals and special attention is usually paid to the presence (or absence) of mineralogical phases formed during firing. Quantitative analysis of XRD data faces major difficulties, as archaeological ceramics are multiphase systems, often poorly crystallised, with amorphous content. The estimation of quantitative mineralogical compositions, by the RIR method [@hubbard1988] or the Rietvelt refinement [@rietveld1969], is a very difficult, high skilled exercise, assuming a thorough knowledge of the material (and expensive databases).
+
+In this study, we show that it is possible to successfully use correspondence analysis of X-ray diffractograms to assess the firing of ceramic materials. The properties of correspondence analysis and its links with matrix seriation enable to characterise the firing of a ceramic assemblage and to identify the outliers. Thus, calibration data sets can be produced on the only basis of archaeological evidence to assess ceramic firing practices across a cultural area, avoiding the use of laboratory references.
+
+As an illustration of this method, we examine XRD data of Iron Age ceramics from an Iberian workshop. The Mas de Moreno workshop is located in the province of Teruel (Aragon, Spain), in the municipality of Foz-Calanda. The activity of the workshop is established between 225-200 BC and 40-30 AD. A first archaeological synthesis of the workshop has highlighted three successive phases of activity, characterised by successive changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, which were discontinued and destroyed around 50-40 BC [@gorgues2012]. The use of an amphora kiln, of much larger dimensions than the previous kilns, as well as the production of Roman amphora and the presence of Latin epigraphy, illustrate a major reorganisation of the workshop in the middle of the 1^st^ century. The workshop's activity ceased during the following decade, mostly as a result of the territorial reorganisation under Roman influence and the distance from the trade routes [@gorgues2012]. This workshop thus constitutes a context well suited to investigate the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
+
+# METHODS
+
+# RESULTS
+
+# DISCUSSION
+
+# CONCLUSION
+
+# ACKNOWLEDGEMENTS
+
+This study has received a State financial support managed by the French Agence Nationale de la Recherche under the program *Investissements d'avenir* (ANR-10-LABX-52).
+
+The author is grateful to Alexis Gorgues (UMR 5607 Institut Ausonius) and José Antonio Benavente (Consorcio Patrimonio Ibérico de Aragón) for providing access to archaeological material.
+
+# DATA AVAILABILITY STATEMENT
+
+The data that support the findings of this study are openly available in [@frerebeau2015h] and [@frerebeau2015i].
+
+Code for data cleaning and analysis is provided as compendium in @frerebeau2023a.
+
+\newpage
+
+# REFERENCES
 
 <!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
 
@@ -116,7 +124,7 @@ Here is an example of inline code `r x` in the middle of a sentence.
 
 \newpage
 
-### Colophon
+# Colophon {-}
 
 This report was generated on `r Sys.time()` using the following computational environment and dependencies:
 
@@ -125,12 +133,5 @@ This report was generated on `r Sys.time()` using the following computational en
 #| cache: false
 
 # which R packages and versions?
-if ("devtools" %in% installed.packages()) devtools::session_info()
-```
-
-The current Git commit details are:
-
-```{r}
-# what commit is this file at? 
-if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+sessionInfo()
 ```
