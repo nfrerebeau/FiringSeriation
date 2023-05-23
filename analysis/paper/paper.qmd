@@ -18,6 +18,9 @@ date-format: long
 format: 
   pdf: 
     documentclass: scrartcl
+    include-in-header: 
+      - text: |
+          \usepackage{booktabs}
     classoption: 
       - french
       - 12pt
@@ -81,17 +84,18 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 # INTRODUCTION
 
-Firing is a "strategic step" [@lemonnier1983a] of the ceramic production process, especially as it involves an economic risk: that of losing all or part of the load to be fired and as much human labour time. The study of the firing of archaeological ceramics is thus a key factor in the interpretation of ancient techniques and the related social practices. To this end, important methodological research has been carried out since the pioneering work of @shepard1936. This led to the wide use of the so-called *Equivalent Firing Temperatures* (EFT) as a way to describe the firing of archaeological ceramics [@tite1969; @tite1969a]. The EFT is a point estimator tied to standard experimental conditions: "[EFT] is that temperature maintained for one hour which would produce the observed mineralogy or microstructure" [@tite1995].
+Firing is a "strategic step" [@lemonnier1983a] of the ceramic production process, especially as it involves an economic risk: the risk of losing all or part of the load to be fired and the associated human labor time. The study of the firing of archaeological ceramics is thus a key factor in interpreting ancient techniques and related social practices. In this regard, significant methodological research has been carried out since the pioneering work of @shepard1936, leading to the widespread use of the so-called *Equivalent Firing Temperatures* (EFT) as a way to describe the firing of archaeological ceramics [@tite1969; @tite1969a]. The EFT is a point estimator tied to standard experimental conditions, defined as "the temperature maintained for one hour which would produce the observed mineralogy or microstructure" [@tite1995].
 
-The EFT is certainly practical, but it raises several methodological and conceptual problems. A full review is beyond the scope of this study, but two points can be made. On the one hand, EFT creates unnecessary ambiguity about the real firing temperature (assuming that the firing temperatures have archaeological significance). On the other hand, @gosselain1992 and @livingstonesmith2001 have demonstrated the limits of this framework, which may lead to anachronistic reasoning [@frerebeau2018].
 
-This study therefore proposes a new method, based on multivariate analysis of powder X-ray diffraction (XRD) data. It aims to provide an alternative to the EFT framework. This method is based on the principle of parsimony with two main objectives: (1) to avoid the use of external references (whether experimental or ethnographic data); (2) to build the simplest possible model by limiting the number of hypotheses involved.
+The EFT is undoubtedly practical, but it raises several methodological and conceptual problems. A full review is beyond the scope of this study, but two points can be made. On the one hand, EFT creates unnecessary ambiguity about the real firing temperature (assuming that the firing temperatures have archaeological significance). On the other hand, @gosselain1992 and @livingstonesmith2001 have demonstrated the limits of this framework, which may lead to anachronistic reasoning [see @frerebeau2018, for a discussion].
 
-XRD analysis of archaeological ceramics allows the identification of the main minerals and special attention is usually paid to the presence (or absence) of mineralogical phases formed during firing. However, quantitative analysis of XRD data faces major difficulties, as archaeological ceramics are multiphase systems, often poorly crystallised, with amorphous content. The estimation of quantitative mineralogical compositions, by the RIR method [@hubbard1988] or the Rietvelt refinement [@rietveld1969], is a very difficult, high skilled exercise, assuming a thorough knowledge of the material (and expensive databases).
+Therefore, this study proposes a new method based on the multivariate analysis of powder X-ray diffraction (XRD) data, aiming to provide an alternative to the EFT framework. This method follows the principle of parsimony and has two main objectives: (1) to avoid the use of external references, whether experimental or ethnographic data; (2) to construct the simplest possible model by limiting the number of hypotheses involved.
 
-In this study, we show that it is possible to successfully use correspondence analysis (CA) of X-ray diffractograms to assess the firing of ceramic materials. The properties of correspondence analysis and its application for matrix seriation enable to characterise the firing of a ceramic assemblage and to identify the outliers. Thus, calibration data sets can be produced on the only basis of archaeological evidence to assess ceramic firing practices across a cultural area, avoiding the use of laboratory references.
+XRD analysis of archaeological ceramics allows for the identification of the main minerals, with special attention paid to the presence or absence of mineralogical phases formed during firing. However, quantitative analysis of XRD data faces significant difficulties due to the multiphase nature, poor crystallization, and amorphous content of archaeological ceramics. Estimating quantitative mineralogical compositions through methods like the RIR method [@hubbard1988] or Rietveld refinement [@rietveld1969] is a challenging and highly skilled exercise, requiring in-depth knowledge of the material and access to expensive databases.
 
-As an illustration of this method, we examine XRD data of Iron Age ceramics from an Iberian workshop. The Mas de Moreno workshop is located in the province of Teruel (Aragon, Spain), in the municipality of Foz-Calanda. The activity of the workshop spans between 225-200 BC and 40-30 AD. A first archaeological synthesis of the workshop has highlighted three successive phases of activity, characterised by successive changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, which were discontinued and destroyed around 50-40 BC [@gorgues2012]. The use of an amphora kiln, of much larger dimensions than the previous kilns, as well as the production of Roman amphora and the presence of Latin epigraphy, illustrate a major reorganisation of the workshop in the middle of the 1^st^ century. The workshop's activity ceased during the following decade, mostly as a result of the territorial reorganisation under Roman influence and the distance from the trade routes [@gorgues2012]. This workshop thus constitutes a context well suited to investigate the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
+In this study, we demonstrate the successful use of correspondence analysis (CA) of X-ray diffractograms to assess the firing of ceramic materials. The properties of correspondence analysis and its application for matrix seriation enable the characterization of the firing of a ceramic assemblage and identification of outliers. Calibration data sets can be produced solely based on archaeological evidence to assess ceramic firing practices, eliminating the need for laboratory references.
+
+To illustrate this method, we examine XRD data of Iron Age ceramics from the Mas de Moreno workshop, located in the province of Teruel (Aragon, Spain), in the municipality of Foz-Calanda. The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
 
 # METHODS
 ## Archaeological samples
@@ -109,11 +113,13 @@ corpus <- here::here("analysis/data/raw_data/corpus.csv") |>
 
 ```{r}
 #| label: tbl-corpus
-#| tbl-cap: "Ceramic and clay samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. LOI: loss on ignition [see @frerebeau2020a]."
-knitr::kable(
-  x = corpus[order(corpus$sample), !(colnames(corpus) %in% c("site_type", "decoration"))],
-  col.names = c("Sample", "Material", "Site", "Stratigraphic Unit", "Phase", "Type", "Part", "LOI (%)")
-)
+#| tbl-cap: "Ceramic and clay samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. SU: stratigraphic unit. LOI: loss on ignition [see @frerebeau2020a]."
+corpus[order(corpus$sample), !(colnames(corpus) %in% c("site_type", "decoration", "part"))] |> 
+  knitr::kable(
+    col.names = c("Sample", "Material", "Site", "SU", "Phase", "Type", "LOI (%)"),
+    booktabs = TRUE,
+    longtable = TRUE
+  )
 ```
 
 Although Iberian fine wares present a significant technological uniformity [@tarradell1980], the sampling was conducted in such a way that all types of pottery produced in the workshop were included in the study (non-Iberian types produced at the end of the workshop's activity period were also sampled).
@@ -123,27 +129,53 @@ A number of fragments of unfired potteries were also found during the excavation
 Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled (@tbl-corpus). These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dates between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study.
 
 ## Powder X-ray diffraction
-The mineralogical composition of the samples was determined by X-ray powder diffraction. The outer surfaces of all the samples were mechanically removed prior to analysis, then about 1 g of material per sample was manualy powdered in an agate mortar.
 
-The data were collected at room temperature with a D8 Advance (Bruker) diffractometer in Bragg-Brentano configuration working at 1.6 kW (40 kV, 40 mA) and equipped with a copper anode source ($k_{\alpha1}$ = 1.5406 ; the $k_\beta$ ray being removed by a Ni-filter in the diffracted beam). An 8 mm anti-scattering slit was mounted in front of the LynxEye© CCD detector. The explored area covered the 3-70° ($2\theta$) range, with an angle step of 0.02° and a time step of 2 seconds (the sample being rotated during the analysis). The stability of the instrument was checked between the different series of measurements by analyzing a standard (corundum crystal, NIST 1976).
+```{r}
+#| label: xrd-data
+## Read XRD data 
+## (see analysis/supplementary-materials/01-data.R)
+xrd_counts <- here::here("analysis/data/derived_data/xrd_clean.csv") |> 
+  read.table(sep = ",", dec = ".", header = TRUE)
+
+## Remove the first column (2 theta positions)
+theta_scale  <- xrd_counts[, 1]
+xrd_counts <- xrd_counts[, -1]
+
+## Transpose (one sample per line)
+xrd_counts <- xrd_counts |> t() |> as.data.frame()
+colnames(xrd_counts) <- paste0("T", seq_len(ncol(xrd_counts)))
+
+## Get index of XRD columns
+xrd_col <- which(grepl(pattern = "T", colnames(xrd_counts)))
+
+## Read mineral data
+minerals <- here::here("analysis/data/derived_data/minerals.csv") |>
+  read.table(sep = ",", dec = ".", header = TRUE, encoding = "UTF-8") |> 
+  subset(symbole %in% c("An", "Cal", "Gh", "Ilt", "Qz", "Di"))
+# minerals <- minerals[!duplicated(minerals$symbole), ]
+```
+
+The mineralogical composition of the samples was determined by X-ray powder diffraction. The outer surfaces of all the samples were mechanically removed prior to analysis. Then, approximately 1 g of material per sample was manually powdered in an agate mortar.
+
+The data were collected at room temperature using a D8 Advance (Bruker) diffractometer in Bragg-Brentano configuration operating at 1.6 kW (40 kV, 40 mA) and equipped with a copper anode source ($k_{\alpha1}$ = 1.5406 Å; the $k_\beta$ ray was removed by a Ni-filter in the diffracted beam). An 8 mm anti-scattering slit was mounted in front of the LynxEye© CCD detector. The explored area covered the 3-70° ($2\theta$) range, with an angle step of 0.02° and a time step of 2 seconds (the sample was rotated during the analysis). The stability of the instrument was checked between different series of measurements by analyzing a standard (corundum crystal, NIST 1976).
 
 All diffractograms were processed in the same way:
 
-1. $k_{\alpha2}$ lines were stripped using penalized likelihood [@derooi2014];
-1. All diffractograms were checked for possible sample displacements, due to inaccurate powder sample mounting, then shifted accordingly (using quartz as an internal standard);
-1. All diffractograms were realigned to a common angular scale, using linear interpolation between data points;
-1. Baselines were estimated using iterative mean suppression [4S Peak Filling, @liland2015], then removed (negative values due to baseline subtraction were replaced by zeros);
-1. Data points below 4° ($2\theta$) and above 54° ($2\theta$) were removed.
+* $k_{\alpha2}$ lines were stripped using penalized likelihood [@derooi2014].
+* All diffractograms were checked for possible sample displacements due to inaccurate powder sample mounting and then shifted accordingly (using quartz as an internal standard).
+* All diffractograms were realigned to a common angular scale using linear interpolation between data points.
+* Baselines were estimated using iterative mean suppression [4S Peak Filling, @liland2015] and then removed (negative values due to baseline subtraction were replaced by zeros).
+* Data points below 4° ($2\theta$) and above 54° ($2\theta$) were removed.
 
-Finally, all the diffractograms were combined into a matrix, where each row corresponds to a sample and each column to a $2\theta$ position, so that each cell contains the corresponding X-ray photon count.
+Finally, all the diffractograms were combined into a `r paste0(dim(xrd_counts[, xrd_col]), collapse = " x ")` matrix where each row corresponds to a sample and each column corresponds to a $2\theta$ position. Each cell contains the corresponding X-ray photon count.
 
 ## Correspondence analysis
 
 We will only briefly recall the main aspects of correspondence analysis, as a detailed review of its mathematical properties is beyond the scope of this article [for an in-depth discussion, see @greenacre2007; @lebart2006].
 
-Correspondence analysis (CA) is similar to principal component analysis (PCA) in that it allows to describe the statistical relationships that can exist between individuals and variables. Unlike PCA, CA analyses the differences between relative values and it considers both individuals and variables at the same time (this allows for the projection of row and column points in the same coordinate space). CA studies the inertia (i.e. the weighted sum of the $\chi2$ distances of each point to the centroid) to create orthogonal components, so that a maximum of the total inertia is represented on the first component, a maximum of the residual inertia on the component, and so on until the last dimension. CA maximizes the correspondence between individuals and variables, instead of maximizing the amount of variance explained by its reduced-space.
+Correspondence analysis (CA) is similar to principal component analysis (PCA) in that it allows describing the statistical relationships that can exist between individuals and variables. However, the concept of similarity between rows and columns is different. In CA, two rows (resp. columns) are close to each other if they associate with columns (resp. rows) in the same way. Unlike PCA, CA analyzes the differences between relative values and considers both individuals and variables at the same time (this allows for the projection of row and column points in the same coordinate space). CA studies the inertia (i.e., the weighted sum of the χ2 distances of each point to the centroid) to create orthogonal components so that a maximum of the total inertia is represented on the first component, a maximum of the residual inertia on the second component, and so on until the last dimension. CA maximizes the correspondence between individuals and variables instead of maximizing the amount of variance explained by its reduced space.
 
-CA is an effective method for the seriation of archaeological assemblages (REF). The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time. CA is not limited to chronological modeling, but is widely used to find a possible arrangement (ordering) of individuals and variables along any gradient, i.e. any aspect which is expected to be related to the observed composition (be it temporal or environmental).
+CA is an effective method for the seriation of archaeological assemblages (REF). The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time. CA is not limited to chronological modeling but is widely used to find a possible arrangement (ordering) of individuals and variables along any gradient, i.e., any aspect that is expected to be related to the observed composition (be it temporal or environmental).
 
 ## Computational environment
 
@@ -183,31 +215,6 @@ All the data processing and statistical analysis were performed with `r R.versio
 # RESULTS
 
 ```{r}
-#| label: xrd-data
-## Read XRD data 
-## (see analysis/supplementary-materials/01-data.R)
-xrd_counts <- here::here("analysis/data/derived_data/xrd_clean.csv") |> 
-  read.table(sep = ",", dec = ".", header = TRUE)
-
-## Remove the first column (2 theta positions)
-theta_scale  <- xrd_counts[, 1]
-xrd_counts <- xrd_counts[, -1]
-
-## Transpose (one sample per line)
-xrd_counts <- xrd_counts |> t() |> as.data.frame()
-colnames(xrd_counts) <- paste0("T", seq_len(ncol(xrd_counts)))
-
-## Get index of XRD columns
-xrd_col <- which(grepl(pattern = "T", colnames(xrd_counts)))
-
-## Read mineral data
-minerals <- here::here("analysis/data/derived_data/minerals.csv") |>
-  read.table(sep = ",", dec = ".", header = TRUE, encoding = "UTF-8") |> 
-  subset(symbole %in% c("An", "Cal", "Gh", "Ilt", "Qz", "Di"))
-# minerals <- minerals[!duplicated(minerals$symbole), ]
-```
-
-```{r}
 #| label: ca-moreno
 ## Mas de Moreno: ceramics + unfired sherds
 sup_row_id <- match(corpus$sample[corpus$site != "Mas de Moreno"], rownames(xrd_counts))
@@ -220,20 +227,23 @@ xrd_moreno_col_coord <- dimensio::get_coordinates(xrd_moreno_ca, margin = 2)
 xrd_moreno_col_contrib <- dimensio::get_contributions(xrd_moreno_ca, margin = 2)
 ```
 
-The first two dimensions are sufficient to retain about `r round(xrd_moreno_eig[2, 3])`% of the total inertia contained in the data (@fig-plot-ca).
+The results of the correspondence analysis of the diffractograms are presented in @fig-plot-ca. Only the data from the analysis of the samples from Mas de Moreno were used, including unfired ceramics and shards. The data from El Palao and Torre Cremada were introduced into the analysis as supplementary individuals. These additional individuals do not contribute to the calculation of the correspondence analysis itself, but they are projected onto the existing analysis space to visualize their relationships with the original dataset.
+
+The first two dimensions are sufficient to retain about `r round(xrd_moreno_eig[2, 3])`% of the total inertia contained in the data (@fig-plot-ca A and B). Plotting the coordinates of the individuals shows an interesting pattern (@fig-plot-ca C and D). The upper quadrants each consist of a small group of closely located individuals, likely exhibiting high similarity to one another. The remaining samples are distributed in the lower quadrants.
 
 ```{r}
 #| label: fig-plot-ca
-#| fig-cap: Scree plot of inertia (top left; only the first ten components are displayed).
+#| fig-cap: "CA results of the XRD patterns of the Mas de Moreno samples. (A) Scree plot of inertia (only the first ten components are displayed). (B) Cumulative inertia of the first ten components. (C) CA rows score plot. (D) CA columns score plot."
 #| fig-width: 10
 #| fig-height: 10
 ## Plot eigenvalues
 par(mar = c(4, 4, 1, 1), mfrow = c(2, 2))
-barplot(
+mid <- barplot(
   height = xrd_moreno_eig[1:10, 1],
   names.arg = rownames(xrd_moreno_eig)[1:10],
-  ylab = "Inertia (%)", las = 1
+  ylab = "Inertia (%)", las = 1, ylim = c(0, 0.3)
 )
+text(x = min(mid), y = 0.29, labels = "A", font = 2, cex = 1.5)
 
 ## Plot cumulative inertia
 plot(
@@ -243,14 +253,19 @@ plot(
   pch = 16,
   col = "red",
   xaxt = "n",
+  xlab = "",
   ylab = "Cumulative inertia (%)", las = 1
 )
+text(x = 1, y = 92, labels = "B", font = 2, cex = 1.5)
 axis(side = 1, at = 1:10, labels = rownames(xrd_moreno_eig)[1:10])
 
 ## Active rows (F1 vs F2)
+xlim <- range(xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1], xrd_moreno_col_coord[, 1])
+ylim <- range(xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2], xrd_moreno_col_coord[, 2])
 plot(
   x = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1],
   y = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2],
+  xlim = xlim, ylim = ylim,
   xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
   ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
   type = "p",
@@ -258,6 +273,7 @@ plot(
   las = 1, asp = 1,
   col = "black"
 )
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "C", font = 2, cex = 1.5)
 abline(h = 0, lty = 2, col = "darkgrey")
 abline(v = 0, lty = 2, col = "darkgrey")
 
@@ -265,6 +281,7 @@ abline(v = 0, lty = 2, col = "darkgrey")
 plot(
   x = xrd_moreno_col_coord[, 1],
   y = xrd_moreno_col_coord[, 2],
+  xlim = xlim, ylim = ylim,
   xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
   ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
   type = "p",
@@ -272,13 +289,16 @@ plot(
   las = 1, asp = 1,
   col = adjustcolor("black", alpha = 0.2)
 )
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "D", font = 2, cex = 1.5)
 abline(h = 0, lty = 2, col = "darkgrey")
 abline(v = 0, lty = 2, col = "darkgrey")
 ```
 
+@fig-plot-contrib shows the contribution of the different columns to the construction of the first two CA-axes. It is important to note that the analysis is performed on the diffractograms: a diffraction peak represents a range of $2\theta$ positions, spanning multiple columns in the data matrix. Consequently, the columns that contribute the most to the construction of the first axis (with a contribution greater than 0.5) are associated with the following diffraction peaks: 21.94° (plagioclases), 26.64° (quartz), 27.76° (plagioclases), 27.90° (plagioclases), and 29.42° (calcite). Similarly, for the second axis, the columns that contribute the most are those corresponding to the peaks at 12.32° (phyllosilicate), 26.66° (quartz), and 31.36° (melilites).
+
 ```{r}
 #| label: fig-plot-contrib
-#| fig-cap: Columns contribution to the construction of the first two components. The thirty variables contributing the most to each component are marked by red lines. 
+#| fig-cap: Columns contribution to the construction of the first two components. The twenty variables contributing the most to each component are highlighted in red. 
 #| fig-width: 10
 #| fig-height: 5
 par(mar = c(0, 4, 1, 1), mfrow = c(2, 1), oma = c(3, 0, 0, 0))
@@ -291,15 +311,18 @@ plot(
   xaxt = "n"
 )
 abline( #21.94, 27.76-27.9, 29.42
-  v = theta_scale[order(xrd_moreno_col_contrib[, 1], decreasing = TRUE)[1:30]],
+  v = theta_scale[order(xrd_moreno_col_contrib[, 1], decreasing = TRUE)[1:20]],
   col = adjustcolor(col = "red", alpha = 0.1)
 )
-# alkahest::peaks_find(
-#   x = theta_scale, 
-#   y = xrd_moreno_col_contrib[, 1], 
-#   SNR = 2, 
+# pks_contrib1 <- alkahest::peaks_find(
+#   x = theta_scale,
+#   y = xrd_moreno_col_contrib[, 1],
+#   SNR = 2,
 #   m = 5
 # )
+# dput(pks_contrib1$x[pks_contrib1$y > 0.5])
+# points(x = pks_contrib1$x[pks_contrib1$y > 0.5],
+#        y = pks_contrib1$y[pks_contrib1$y > 0.5])
 
 plot(
   x = theta_scale,
@@ -309,26 +332,40 @@ plot(
   ylab = "Contribution to F2"
 )
 abline( #12.32, 26.66, 31.36
-  v = theta_scale[order(xrd_moreno_col_contrib[, 2], decreasing = TRUE)[1:30]],
+  v = theta_scale[order(xrd_moreno_col_contrib[, 2], decreasing = TRUE)[1:20]],
   col = adjustcolor(col = "red", alpha = 0.1)
 )
-# alkahest::peaks_find(
+mtext(expression(2*theta), side = 1, line = 2, outer = TRUE)
+# pks_contrib2 <- alkahest::peaks_find(
 #   x = theta_scale,
 #   y = xrd_moreno_col_contrib[, 2],
 #   SNR = 2,
 #   m = 5
 # )
-mtext(expression(2*theta), side = 1, line = 2, outer = TRUE)
+# dput(pks_contrib2$x[pks_contrib2$y > 0.5])
+# points(x = pks_contrib2$x[pks_contrib2$y > 0.5],
+#        y = pks_contrib2$y[pks_contrib2$y > 0.5])
 ```
 
+The first plane of the analysis exhibits the characteristic Guttman effect, also known as the arch effect (@fig-plot-ca, @fig-plot-guttman). This effect is characterized by a strong nonlinear relationship between the second factor and the first factor. The Guttman effect typically arises when a single dominant latent variable is present [@lebart2014]. Interestingly, the samples located in the upper right quadrant of the correspondence analysis plot are linked to diffraction peaks that correspond to clay minerals and calcite (@fig-plot-guttman A and B, @fig-plot-xrd). These samples are positioned opposite to the ones associated with the peaks of diopside and anorthite along axis 1. Conversely, the samples located in the two lower quadrants are linked to the peaks of quartz and the melilite series.
 
 ```{r}
-#| label: fig-plot-ca-loi
-#| fig-cap: Row (left) and columns (right) coordinates along the first two CA components. For the sake of readability, only the three main peaks of a selection of minerals of interest are displayed.
+#| label: fig-plot-guttman
+#| fig-cap: "Guttman effect observed on the first plane of correspondence analysis. Row coordinates are highlighted based on material (A), chronological phase (C), and supplementary individuals (C). In the top right (B), the column coordinates are shown, displaying only the main diffraction lines of a selected set of minerals of interest for improved readability. Ilt: illite; Cal: calcite; Qz: quartz; Gh: gehlenite; Di: diopside; An: anorthite."
 #| fig-width: 10
 #| fig-height: 10
-layout(matrix(data = c(1, 2, 3, 3), ncol = 2))
+layout(matrix(data = c(1, 3, 2, 4), ncol = 2))
 par(mar = c(4, 4, 1, 1))
+
+theta_minerals <- vapply(
+  X = minerals$theta,
+  FUN = function(x, theta) { which.min(abs(theta - x)) },
+  FUN.VALUE = numeric(1),
+  theta = theta_scale
+)
+xrd_minerals_coord <- xrd_moreno_col_coord[theta_minerals, ]
+xlim <- range(range(xrd_moreno_row_coord[, 1]), range(xrd_minerals_coord[, 1]))
+ylim <- range(range(xrd_moreno_row_coord[, 2]), range(xrd_minerals_coord[, 2]))
 
 id_moreno <- match(rownames(xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, ]), corpus$sample)
 
@@ -337,20 +374,180 @@ col_material <- khroma::color("high contrast")(2)
 plot(
   x = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1],
   y = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2],
+  xlim = xlim, ylim = ylim,
   xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
   ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
   type = "p",
-  pch = 16,
+  pch = c(16, 17)[as.factor(corpus$material[id_moreno])],
   las = 1, asp = 1,
   col = col_material[as.factor(corpus$material[id_moreno])]
 )
 abline(h = 0, lty = 2, col = "darkgrey")
 abline(v = 0, lty = 2, col = "darkgrey")
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "A", font = 2, cex = 1.5)
 legend("bottomright", legend = levels(as.factor(corpus$material[id_moreno])),
-       pch = 16, col = col_material)
+       pch = c(16, 17), col = col_material)
 
+## Columns (F1 vs F2)
+par(mar = c(4, 4, 1, 1))
+col_minerals <- khroma::color("bright")(6)
+plot(
+  x = xrd_minerals_coord[, 1],
+  y = xrd_minerals_coord[, 2],
+  xlim = xlim, ylim = ylim,
+  xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
+  ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
+  type = "p",
+  pch = 16,
+  las = 1, asp = 1,
+  col = col_minerals[as.factor(minerals$symbole)]
+)
+abline(h = 0, lty = 2, col = "darkgrey")
+abline(v = 0, lty = 2, col = "darkgrey")
+text(
+  x = xrd_minerals_coord[, 1],
+  y = xrd_minerals_coord[, 2],
+  labels = mapply(
+    FUN = function(s, h, k, l) {
+      if (h < 0) as.expression(bquote(.(s)~"("*bar(.(abs(h)))*.(k)*.(l)*")"))
+      else as.expression(bquote(.(s)~"("*.(h)*.(k)*.(l)*")"))
+    }, 
+    s = minerals$symbole,
+    h = minerals$h, 
+    k = minerals$k,
+    l = minerals$l
+  ),
+  col = col_minerals[as.factor(minerals$symbole)],
+  pos = c(2,3, 2, 1, 4, 4, 4, 2, 2, 2, 4, 3, 3, 4, 3, 1, 4)
+)
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "B", font = 2, cex = 1.5)
 
-## F1 vs F2: active only, by loi
+## F1 vs F2: active only, chronology
+col_phase <- khroma::color("bright")(3)
+plot(
+  x = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1],
+  y = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2],
+  xlim = xlim, ylim = ylim,
+  xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
+  ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
+  type = "p",
+  pch = c(21, 22, 23)[as.factor(corpus$phase[id_moreno])],
+  las = 1, asp = 1,
+  col = "black",
+  bg = col_phase[as.factor(corpus$phase[id_moreno])]
+)
+abline(h = 0, lty = 2, col = "darkgrey")
+abline(v = 0, lty = 2, col = "darkgrey")
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "C", font = 2, cex = 1.5)
+legend("bottomright", 
+       legend = paste0("Phase ", levels(as.factor(corpus$phase[id_moreno]))),
+       pch = c(21, 22, 23), col = "black", pt.bg = col_phase)
+
+## F1 vs F2: active and supplementary rows
+col_site <- khroma::color("vibrant")(2)
+plot(
+  x = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1],
+  y = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2],
+  xlim = xlim, ylim = ylim,
+  xlab = sprintf("F1 (%g%%)", round(xrd_moreno_eig[1, 2], 1)),
+  ylab = sprintf("F2 (%g%%)", round(xrd_moreno_eig[2, 2], 1)),
+  type = "p",
+  pch = 16,
+  las = 1, asp = 1,
+  col = "lightgrey"
+)
+points(
+  x = xrd_moreno_row_coord[xrd_moreno_row_coord$.sup, 1],
+  y = xrd_moreno_row_coord[xrd_moreno_row_coord$.sup, 2],
+  pch = c(24, 25)[as.factor(corpus$site[corpus$site != "Mas de Moreno"])],
+  bg = col_site[as.factor(corpus$site[corpus$site != "Mas de Moreno"])]
+)
+car::dataEllipse(
+  x = as.matrix(xrd_moreno_row_coord[xrd_moreno_row_coord$.sup, 1:2]),
+  groups = as.factor(corpus$site[corpus$site != "Mas de Moreno"]),
+  group.labels = NULL,
+  level = 0.95,
+  col = col_site,
+  plot.points = FALSE,
+  center.pch = NULL,
+  add = TRUE
+)
+abline(h = 0, lty = 2, col = "darkgrey")
+abline(v = 0, lty = 2, col = "darkgrey")
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "D", font = 2, cex = 1.5)
+legend("bottomright", legend = c(levels(as.factor(corpus$site[corpus$site != "Mas de Moreno"])), "Mas de Moreno"),
+       pch = c(24, 25, 16), pt.bg = col_site, col = c("black", "black", "lightgrey"))
+
+```
+
+```{r}
+#| label: fig-plot-xrd
+#| fig-cap: "Diffractograms of representative samples from each quadrant of the CA plot (see @fig-plot-ca). From top to bottom: upper left quadrant (BDX14922), lower left quadrant (BDX15451), lower right quadrant (BDX15465), upper right quadrant (BDX22203). Only the peaks that contribute the most to the construction of the first two CA axes are indexed (see text and @fig-plot-contrib)."
+#| fig-width: 10
+#| fig-height: 11
+par(mfrow = c(4, 1), mar = c(1, 0, 1, 1), oma = c(4, 4, 4, 0))
+
+pks <- c(c(21.94, 26.64, 27.76, 27.9, 29.42), c(12.32, 26.66, 31.36))
+## Upper left quadrant
+plot(
+  x = theta_scale,
+  y = xrd_counts[rownames(xrd_counts) == "BDX14922", ] / 1000,
+  type = "l",
+  xaxt = "n",
+  yaxt = "n",
+  ylab = "",
+  las = 1
+)
+abline(v = pks, lty = 2)
+axis(side = 3, at = pks)
+text(x = min(theta_scale) + 1, y = 55, labels = "BDX14922", font = 2)
+## Bottom left quadrant
+plot(
+  x = theta_scale,
+  y = xrd_counts[rownames(xrd_counts) == "BDX15451", ] / 1000,
+  type = "l",
+  xaxt = "n",
+  yaxt = "n",
+  ylab = "",
+  las = 1
+)
+abline(v = pks, lty = 2)
+text(x = min(theta_scale) + 1, y = 35, labels = "BDX15451", font = 2)
+## Bottom right quadrant
+plot(
+  x = theta_scale,
+  y = xrd_counts[rownames(xrd_counts) == "BDX15465", ] / 1000,
+  type = "l",
+  xaxt = "n",
+  yaxt = "n",
+  ylab = "",
+  las = 1
+)
+abline(v = pks, lty = 2)
+text(x = min(theta_scale) + 1, y = 35, labels = "BDX15465", font = 2)
+## Top right quadrant
+plot(
+  x = theta_scale,
+  y = xrd_counts[rownames(xrd_counts) == "BDX22203", ] / 1000,
+  type = "l",
+  yaxt = "n",
+  ylab = "",
+  las = 1
+)
+abline(v = pks, lty = 2)
+text(x = min(theta_scale) + 1, y = 15.5, labels = "BDX22203", font = 2)
+
+mtext(expression(2*theta), side = 1, line = 3, cex = 1, outer = TRUE)
+mtext("Count (a. u.)", side = 2, line = 2, cex = 1, outer = TRUE)
+```
+
+```{r}
+#| label: fig-plot-ca-loi
+#| fig-cap: "Bottom right: row coordinates along the first CA-axis according to the loss on ignition (LOI)."
+#| fig-width: 10
+#| fig-height: 5
+par(mar = c(4, 4, 1, 1), mfrow = c(1, 2), oma = c(0, 0, 0, 0))
+
 loi_moreno <- corpus$LOI[id_moreno]
 loi_NA <- is.na(loi_moreno)
 loi_moreno[loi_NA] <- min(loi_moreno, na.rm = TRUE)
@@ -359,6 +556,7 @@ col_loi[loi_NA] <- "darkgrey"
 attr(col_loi,"breaks")[loi_NA] <- NA
 loi_moreno[loi_NA] <- NA
 
+## F1 vs F2: LOI
 plot(
   x = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1],
   y = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 2],
@@ -373,13 +571,15 @@ plot(
 abline(h = 0, lty = 2, col = "darkgrey")
 abline(v = 0, lty = 2, col = "darkgrey")
 
-## F1 vs LOI: active only
+## F1 vs LOI
 data_fit <- data.frame(
-  loi = loi_moreno,
+  LOI = loi_moreno,
   F1 = xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, 1]
 )
-loi_fit <- lm(loi ~ poly(F1, 2), data = data_fit)
-seq_F1 <- seq(from = min(data_fit$F1), to = max(data_fit$F1), by = 0.1)
+data_fit <- data_fit[stats::complete.cases(data_fit), ] # Remove NA
+loi_fit <- lm(LOI ~ poly(F1, 2), data = data_fit)
+loi_fit_res <- summary(loi_fit)
+seq_F1<- seq(from = min(data_fit$F1), to = max(data_fit$F1), by = 0.1)
 loi_pred <- predict(
   object = loi_fit, 
   newdata = data.frame(F1 = seq_F1),
@@ -423,233 +623,9 @@ text(
 )
 ```
 
-```{r}
-#| label: fig-plot-xrd
-#| fig-width: 10
-#| fig-height: 5
-par(mfrow = c(3, 1), mar = c(1, 0, 1, 1), oma = c(4, 5, 0, 0))
+Additionally, @fig-plot-ca-loi illustrates the relationship between the first axis of the correspondence analysis and the loss on ignition (LOI) of the samples. It is observed that the LOI is inversely correlated with the coordinates of the individuals along the first axis. To further explore this relationship, a second-order polynomial regression analysis was conducted. The results indicated that the overall regression was statistically significant (RSE = `r round(loi_fit_res$sigma, 2)` on `r  loi_fit_res$df[2]` degrees of freedom, R^2^ = `r round(loi_fit_res$r.squared, 2)`, adjusted R^2^ = `r round(loi_fit_res$adj.r.squared, 2)`, `r sprintf("F(%g, %g) = %g", loi_fit_res$fstatistic[2], loi_fit_res$fstatistic[3], round(loi_fit_res$fstatistic[1], 1))`, p < 0.001), indicating a good fit of the polynomial regression model to the data.
 
-plot(
-  x = theta_scale,
-  y = xrd_counts[rownames(xrd_counts) == "BDX14922", ] / 1000,
-  type = "l",
-  xaxt = "n",
-  ylab = "",
-  las = 1
-)
-text(x = min(theta_scale) + 1, y = 55, labels = "BDX14922", font = 2)
-plot(
-  x = theta_scale,
-  y = xrd_counts[rownames(xrd_counts) == "BDX15036", ] / 1000,
-  type = "l",
-  xaxt = "n",
-  ylab = "",
-  las = 1
-)
-text(x = min(theta_scale) + 1, y = 35, labels = "BDX15036", font = 2)
-plot(
-  x = theta_scale,
-  y = xrd_counts[rownames(xrd_counts) == "BDX22203", ] / 1000,
-  type = "l",
-  ylab = "",
-  las = 1
-)
-text(x = min(theta_scale) + 1, y = 15.5, labels = "BDX22203", font = 2)
-
-mtext(expression(2*theta), side = 1, line = 3, cex = 1, outer = TRUE)
-mtext(expression("Count ("*10^3*")"), side = 2, line = 3, cex = 1, outer = TRUE)
-```
-
-
-```{r}
-#| label: ca-ceramics
-## Ceramics
-names_ok <- xrd_moreno_row_coord |> 
-  subset(F2 < 0) |> 
-  rownames()
-
-# id_OK <- match(names_ok, rownames(xrd_counts))
-id_ceram <- match(corpus$sample[corpus$material != "clay"], rownames(xrd_counts))
-xrd_ceram <- xrd_counts[id_ceram, ]
-sup_row_id <- match(corpus$sample[corpus$site != "Mas de Moreno"], rownames(xrd_ceram))
-xrd_ceram_ca <- dimensio::ca(object = xrd_ceram, sup_row = sup_row_id)
-
-## Get CA results
-xrd_ceram_eig <- dimensio::get_eigenvalues(xrd_ceram_ca)
-xrd_ceram_row_coord <- dimensio::get_coordinates(xrd_ceram_ca, margin = 1)
-xrd_ceram_col_coord <- dimensio::get_coordinates(xrd_ceram_ca, margin = 2)
-xrd_ceram_col_contrib <- dimensio::get_contributions(xrd_ceram_ca, margin = 2)
-```
-
-```{r}
-#| label: fig-plot-minerals
-#| fig-cap: XXX.
-#| fig-width: 7
-#| fig-height: 7
-theta_minerals <- vapply(
-  X = minerals$theta,
-  FUN = function(x, theta) { which.min(abs(theta - x)) },
-  FUN.VALUE = numeric(1),
-  theta = theta_scale
-)
-xrd_minerals_coord <- xrd_ceram_col_coord[theta_minerals, ]
-xlim <- range(range(xrd_ceram_row_coord[, 1]), range(xrd_minerals_coord[, 1]))
-ylim <- range(range(xrd_ceram_row_coord[, 2]), range(xrd_minerals_coord[, 2]))
-
-
-## Columns (F1 vs F2)
-par(mar = c(4, 4, 1, 1))
-col_minerals <- khroma::color("bright")(6)
-plot(
-  x = xrd_minerals_coord[, 1],
-  y = xrd_minerals_coord[, 2],
-  xlim = xlim, ylim = ylim,
-  xlab = sprintf("F1 (%g%%)", round(xrd_ceram_eig[1, 2], 1)),
-  ylab = sprintf("F2 (%g%%)", round(xrd_ceram_eig[2, 2], 1)),
-  type = "p",
-  pch = 16,
-  las = 1, asp = 1,
-  col = col_minerals[as.factor(minerals$symbole)]
-)
-abline(h = 0, lty = 2, col = "darkgrey")
-abline(v = 0, lty = 2, col = "darkgrey")
-text(
-  x = xrd_minerals_coord[, 1],
-  y = xrd_minerals_coord[, 2],
-  labels = mapply(
-    FUN = function(s, h, k, l) {
-      if (h < 0) as.expression(bquote(.(s)~"("*bar(.(abs(h)))*.(k)*.(l)*")"))
-      else as.expression(bquote(.(s)~"("*.(h)*.(k)*.(l)*")"))
-    }, 
-    s = minerals$symbole,
-    h = minerals$h, 
-    k = minerals$k,
-    l = minerals$l
-  ),
-  col = col_minerals[as.factor(minerals$symbole)],
-  pos = c(3, 2, 1, 1, 2, 4, 2, 2, 2, 4, 3, 3, 1, 3, 1, 4)
-)
-```
-
-```{r}
-#| label: fig-plot-ca-ceram
-#| fig-cap: XXX.
-#| fig-width: 10
-#| fig-height: 10
-layout(matrix(data = c(1, 2, 3, 3), ncol = 2))
-par(mar = c(4, 4, 1, 1))
-
-id_moreno <- match(rownames(xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, ]), corpus$sample)
-id_settlements <- match(rownames(xrd_ceram_row_coord[xrd_ceram_row_coord$.sup, ]), corpus$sample)
-
-## F1 vs F2: active only, by site
-col_site <- khroma::color("bright")(2)
-plot(
-  x = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 1],
-  y = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 2],
-  xlim = xlim, ylim = ylim,
-  xlab = sprintf("F1 (%g%%)", round(xrd_ceram_eig[1, 2], 1)),
-  ylab = sprintf("F2 (%g%%)", round(xrd_ceram_eig[2, 2], 1)),
-  type = "p",
-  pch = 21,
-  las = 1, asp = 1,
-  bg = "lightgrey",
-  col = "black"
-)
-points(
-  x = xrd_ceram_row_coord[xrd_ceram_row_coord$.sup, 1],
-  y = xrd_ceram_row_coord[xrd_ceram_row_coord$.sup, 2],
-  pch = 24,
-  bg = col_site[as.factor(corpus$site[corpus$site != "Mas de Moreno"])]
-)
-# car::dataEllipse(
-#   x = as.matrix(xrd_ceram_row_coord[xrd_ceram_row_coord$.sup, 1:2]),
-#   groups = as.factor(corpus$site[id_settlements]),
-#   level = 0.95,
-#   col = col_site,
-#   plot.points = FALSE,
-#   center.pch = NULL,
-#   add = TRUE
-# )
-abline(h = 0, lty = 2, col = "darkgrey")
-abline(v = 0, lty = 2, col = "darkgrey")
-legend("bottomright", legend = levels(as.factor(corpus$site[id_settlements])),
-       pch = 16, col = col_site)
-
-
-## F1 vs F2: active only, by loi
-loi_moreno <- corpus$LOI[id_moreno]
-loi_NA <- is.na(loi_moreno)
-loi_moreno[loi_NA] <- min(loi_moreno, na.rm = TRUE)
-col_loi <- khroma::ramp(loi_moreno, palette = "YlOrBr")(5)
-col_loi[loi_NA] <- "darkgrey"
-attr(col_loi,"breaks")[loi_NA] <- NA
-loi_moreno[loi_NA] <- NA
-
-plot(
-  x = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 1],
-  y = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 2],
-  xlim = xlim, ylim = ylim,
-  xlab = sprintf("F1 (%g%%)", round(xrd_ceram_eig[1, 2], 1)),
-  ylab = sprintf("F2 (%g%%)", round(xrd_ceram_eig[2, 2], 1)),
-  type = "p",
-  pch = 21,
-  las = 1, asp = 1,
-  col = "black",
-  bg = col_loi
-)
-abline(h = 0, lty = 2, col = "darkgrey")
-abline(v = 0, lty = 2, col = "darkgrey")
-
-## F1 vs LOI: active only
-data_fit <- data.frame(
-  loi = loi_moreno,
-  F1 = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 1]
-)
-loi_fit <- lm(loi ~ poly(F1, 2), data = data_fit)
-seq_F1 <- seq(from = min(data_fit$F1), to = max(data_fit$F1), by = 0.1)
-loi_pred <- predict(
-  object = loi_fit, 
-  newdata = data.frame(F1 = seq_F1),
-  interval = "confidence", 
-  level = 0.95
-)
-
-plot(
-  x = xrd_ceram_row_coord[!xrd_ceram_row_coord$.sup, 1],
-  y = loi_moreno,
-  xlab = sprintf("F1 (%g%%)", round(xrd_ceram_eig[1, 2], 1)),
-  ylab = "LOI (%)",
-  type = "p",
-  pch = 21,
-  las = 1,
-  col = "black",
-  bg = col_loi
-)
-polygon(
-  x = c(seq_F1, rev(seq_F1)),
-  y = c(loi_pred[, "lwr"], rev(loi_pred[, "upr"])),
-  col = adjustcolor("black", alpha = 0.2),
-  border = NA,
-  lwd = 2
-)
-lines(
-  x = seq_F1,
-  y = loi_pred[, "fit"], 
-  col = "red",
-  lwd = 2
-)
-
-legend_image <- as.raster(sort(col_loi[col_loi != "darkgrey"]))
-rasterImage(legend_image, 0.80, 10, 0.90, 15)
-rect(0.80, 10, 0.90, 15)
-text(
-  x = 0.9, 
-  y = c(10, 15), 
-  labels = paste0(round(range(attr(col_loi, "breaks"), na.rm = TRUE)), "%"), 
-  pos = 4
-)
-```
+The Guttman effect arises from the unimodal distribution of observed variables along a gradient, suggesting the possibility of ordering these variables along the same gradient. Our results strongly suggest that the gradient under consideration is related to the firing process: the first axis represents the opposition between minerals present in the raw material and those formed during firing. These secondary minerals gradually form during the firing process as conditions change and are likely to be consumed in subsequent chemical reactions. Hence, a unimodal distribution can be expected for various $2\theta$ positions along this gradient.
 
 # DISCUSSION
 
