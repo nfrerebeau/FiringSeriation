@@ -44,7 +44,7 @@ csl: "../templates/elsevier-harvard.csl"
 abstract: |
   Text of abstract
 keywords: |
-  XRD; ceramic firing; correspondence analysis; matrix seriation
+  X-ray diffraction; ceramic firing; correspondence analysis; matrix seriation
 highlights: |
   These are the highlights. 
 ---
@@ -54,10 +54,7 @@ highlights: |
 options(knitr.kable.NA = "")
 ```
 
-
 Keywords: `r rmarkdown::metadata$keywords`
-
-Highlights: `r rmarkdown::metadata$highlights`
 
 ```{r}
 #| label: graphical-abstract
@@ -90,13 +87,13 @@ The EFT is undoubtedly practical, but it raises several methodological and conce
 
 Therefore, this study proposes a new method based on the multivariate analysis of powder X-ray diffraction (XRD) data, aiming to provide an alternative to the EFT framework. This method follows the principle of parsimony and has two main objectives: (1) to avoid the use of external references, whether experimental or ethnographic data; (2) to construct the simplest possible model by limiting the number of hypotheses involved.
 
-XRD is routinely used to investigate the mineralogical composition of archaeological ceramic bodies. Typically, XRD is employed qualitatively, focusing on identifying mineralogical phases that have formed during firing, for understanding the firing history and the transformations that occurred within the ceramics. Quantitative analysis of XRD data faces significant difficulties due to the multiphase nature, poor crystallization, and amorphous content of archaeological ceramics. Estimating quantitative mineralogical compositions through methods like the RIR method [@hubbard1988] or Rietveld refinement [@rietveld1969] is a challenging and highly skilled exercise, requiring in-depth knowledge of the material and access to expensive databases.
+XRD is routinely used to investigate the mineralogical composition of archaeological ceramic bodies. Typically, XRD is employed qualitatively, focusing on identifying mineralogical phases that have formed during firing, for understanding the firing history and the transformations that occurred within the ceramic material. Quantitative analysis of XRD data faces significant difficulties due to the multiphase nature, poor crystallization, and amorphous content of archaeological ceramics. Estimating quantitative mineralogical compositions through methods like the RIR method [@hubbard1988] or Rietveld refinement [@rietveld1969] is a challenging and highly skilled exercise, requiring in-depth knowledge of the material (and may require access to expensive databases).
 
 Limited work has been done on the use of multivariate methods for the analysis of ray diffraction data from archaeological materials. Different approaches have been used such as Lineal Discriminant Analysis [@garciagimenez2006], Principal Component Analysis [@delavilla2003; @holakooei2014] or hierarchical clustering [@piovesan2013; @maritan2015], mainly for classification purposes.
 
 In this study, we show that correspondence analysis (CA) of X-ray diffractograms can be used to assess the firing of ceramic materials. The properties of correspondence analysis and its application for matrix seriation enable the description of the firing of a ceramic assemblage and identification of outliers. Calibration data sets can be produced solely based on archaeological evidence to assess ceramic firing practices, eliminating the need for laboratory references.
 
-To illustrate this method, we examine XRD data of Iron Age ceramics from the Mas de Moreno workshop, located in the province of Teruel (Aragon, Spain). The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
+To illustrate this method, we examine XRD data of Iron Age ceramics from the Mas de Moreno workshop (Teruel, Aragon, Spain). The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
 
 # METHODS
 ## Archaeological samples
@@ -128,7 +125,7 @@ Although Iberian fine wares present a significant technological uniformity [@tar
 
 A number of fragments of unfired potteries were also found during the excavation of the workshop [for a complete presentation of these unfired potsherds, see @frerebeau2017]. Of these, `r sum(corpus$material == "clay" & corpus$site == "Mas de Moreno")` samples have been analysed here.
 
-Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled. These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dates between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study.
+Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled. These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dated between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study.
 
 ## Powder X-ray diffraction
 
@@ -353,7 +350,7 @@ The first plane of the analysis exhibits the characteristic Guttman effect, also
 
 ```{r}
 #| label: fig-plot-guttman
-#| fig-cap: "Guttman effect observed on the first plane of correspondence analysis. Row coordinates are highlighted based on material (A), chronological phase (C), and supplementary individuals (C). In the top right (B), the column coordinates are shown, displaying only the main diffraction lines of a selected set of minerals of interest for improved readability. Ilt: illite; Cal: calcite; Qz: quartz; Gh: gehlenite; Di: diopside; An: anorthite."
+#| fig-cap: "Guttman effect observed on the first plane of correspondence analysis. Row coordinates are highlighted based on material (A), chronological phase (C), and supplementary individuals with 95% probability ellipses (D). In the top right (B), the column coordinates are shown, displaying only the main diffraction lines of a selected set of minerals of interest for improved readability. Ilt: illite; Cal: calcite; Qz: quartz; Gh: gehlenite; Di: diopside; An: anorthite."
 #| fig-width: 10
 #| fig-height: 10
 layout(matrix(data = c(1, 3, 2, 4), ncol = 2))
@@ -543,12 +540,28 @@ mtext(expression(2*theta), side = 1, line = 3, cex = 1, outer = TRUE)
 mtext("Count (a. u.)", side = 2, line = 2, cex = 1, outer = TRUE)
 ```
 
+The Guttman effect arises from the unimodal distribution of observed variables along a gradient, suggesting the possibility of ordering these variables along the same gradient. Our results strongly suggest that the gradient under consideration is related to the firing process: the first axis represents the opposition between minerals present in the raw material and those formed during firing. These secondary minerals gradually form during the firing process as conditions change and are likely to be used in subsequent chemical reactions. Hence, a unimodal distribution can be expected for various $2\theta$ positions along this gradient.
+
+# DISCUSSION
+## Ceramic firing
+
+The production of ceramic materials involves solid-state transformations where the mineralogical composition of the final product differs from that of the raw material [@heimann1989]. This is particularly true for Ca-rich ceramics, where the formation of new Ca-silicates can occur. The energy required for these transformations is supplied in the form of heat during firing, without reaching melting. As a result, the transformation process tends toward thermodynamic equilibrium but never fully achieves it [@grapes2010, 191]. One of the reasons for this deviation from equilibrium lies in the control exerted by reaction kinetics during ceramic firing [@treiman1983; @heimann1989; @heimann2019]. The majority of archaeological ceramic materials are characterized by frozen-in phase transitions [@rocabois2001; @tsuchiyama1983; @heimann2019].
+
+Archaeological ceramic thus constitute highly heterogeneous materials, allowing for the existence of micro-equilibria confined to the reaction interfaces between grains. These micro-equilibria can result in the formation of thermodynamically incompatible mineral phases at the system scale [@maggetti1986; @heimann2019]. However, the appearance of new phases is dependent on the availability of reactive components, which delays the initiation of these transformations compared to situations described by phase diagrams. Numerous studies have investigated these transformations [see, for instance, @peters1978; @dondi1998; @duminuco1998; @riccardi1999; @cultrone2001; @rathossi2010], we only highlight the main findings in this context.
+
+* During the firing process, the dehydroxylation of clay minerals and the thermal decomposition of calcium carbonates facilitate the availability of highly reactive oxides, enabling the formation of new phases, whether crystalline or not.
+* At the interface between quartz and phyllosilicates, the dehydroxylation of phyllosilicates leads to the expected formation of potassium feldspars and alumino-silicates (mullite). Similarly, the interaction between dolomite and quartz is likely to result in the appearance of diopside. Furthermore, the contact between calcite and quartz is expected to produce wollastonite, which appears to be an intermediate reaction promoting the formation of anorthite [@traore2000].
+* The interface between calcite, quartz, and phyllosilicates is anticipated to yield different calcium silicates (gehlenite, anorthite, wollastonite, and pyroxenes), sometimes accompanied by phases associated with the dehydroxylation of clay minerals, particularly potassium feldspars. The formation of gehlenite is a phenomenon that is accentuated by local enrichment in CaO.
+
+The principal axis of correspondence analysis is built upon the opposition between primary phases and secondary phases. The resulting projection highlights the progression of firing, in accordance with the expected mineralogical transformations (@fig-plot-guttman B). The intermediate position of gehlenite can also be explained. The ceramics from Mas de Moreno all belong to the category of Ca-rich ceramics, as defined by @noll1991: within the CaO-Al~2~O~3~-SiO~2~ system, they fall within the quartz-anorthite-wollastonite triangle [@frerebeau2020a]. In this case, the formed gehlenite is metastable. It serves as an intermediate product towards the formation of anorthite and wollastonite, linked to the diffusion of calcium through the matrix [@traore2000; @traore2003a]. As gehlenite forms a solid solution with akermanite (the melilite series), it can also promote the crystallization of diopside (primarily of the fassaite type) rather than anorthite [@dondi1998; @rathossi2010].
+
 ```{r}
-#| label: fig-plot-ca-loi
-#| fig-cap: "Bottom right: row coordinates along the first CA-axis according to the loss on ignition (LOI)."
-#| fig-width: 10
-#| fig-height: 5
-par(mar = c(4, 4, 1, 1), mfrow = c(1, 2), oma = c(0, 0, 0, 0))
+#| label: fig-plot-loi-map
+#| fig-cap: "Top: the relationship between loss on ignition (LOI) and CA coordinates is depicted. The red line represents the second-order polynomial fit with an associated 95% confidence interval. Bottom: a heat map of the diffractograms in the 5-35° range ($2\\theta$) is displayed. The samples are ordered based on the first axis of the correspondence analysis. To enhance visualization, a square root transformation was applied."
+#| fig-width: 8
+#| fig-height: 8
+layout(matrix(c(1, 3, 3, 2, 3, 3), ncol = 2))
+par(mar = c(4, 4, 1, 2))
 
 loi_moreno <- corpus$LOI[id_moreno]
 loi_NA <- is.na(loi_moreno)
@@ -623,16 +636,65 @@ text(
   labels = paste0(round(range(attr(col_loi, "breaks"), na.rm = TRUE)), "%"), 
   pos = 4
 )
+
+## Heat map
+xrd_moreno_row_active <- xrd_moreno_row_coord[!xrd_moreno_row_coord$.sup, ]
+which_moreno <- match(rownames(xrd_moreno_row_active), rownames(xrd_counts))
+xrd_counts_moreno <- xrd_counts[which_moreno, ]
+
+id_order <- order(xrd_moreno_row_active[, 1])
+xrd_reorder <- as.matrix(xrd_counts_moreno[id_order, ])
+xrd_reorder <- t(sqrt(xrd_reorder))
+# xrd_reorder <- apply(X = xrd_reorder, MARGIN = 1, FUN = function(x) alkahest::rescale_max(seq_along(x), x)$y)
+
+theta_range <- theta_scale >= 5 & theta_scale <= 35
+image(
+  x = theta_scale[theta_range],
+  y = seq_len(ncol(xrd_reorder)),
+  z = xrd_reorder[theta_range, ],
+  xlab = expression(2*theta), ylab = "",
+  yaxt = "n",
+  col = khroma::color("YlOrBr")(255)
+)
+arrows(x0 = 5, y0 = 0, x1 = 5, y1 = 70.5, length = 0.2, lwd = 2, xpd = TRUE)
+abline(
+  h = which.min(xrd_moreno_row_active[id_order, 1] < 0 & xrd_moreno_row_active[id_order, 2] > 0) - 0.5,
+  lty = 2
+)
+abline(
+  h = which.max(xrd_moreno_row_active[id_order, 1] > 0 & xrd_moreno_row_active[id_order, 2] > 0) - 0.5,
+  lty = 2
+)
+axis(side = 4, at = c(11.5, 60.5), labels = FALSE)
+mtext(text = "firing gradient", side = 2, line = 0.5)
+mtext(text = "unfired", side = 4, line = 0.5, at = 5.5)
+mtext(text = "production conditions", line = 0.5, side = 4, at = 35)
+mtext(text = "overfired", line = 0.5, side = 4, at = 66)
 ```
 
-Additionally, @fig-plot-ca-loi illustrates the relationship between the first axis of the correspondence analysis and the loss on ignition (LOI) of the samples [see @frerebeau2020a for the LOI data]. It is observed that the LOI is inversely correlated with the coordinates of the individuals along the first axis. To further explore this relationship, a second-order polynomial regression analysis was conducted. The results indicated that the overall regression was statistically significant (RSE = `r round(loi_fit_res$sigma, 2)` on `r  loi_fit_res$df[2]` degrees of freedom, R^2^ = `r round(loi_fit_res$r.squared, 2)`, adjusted R^2^ = `r round(loi_fit_res$adj.r.squared, 2)`, `r sprintf("F(%g, %g) = %g", loi_fit_res$fstatistic[2], loi_fit_res$fstatistic[3], round(loi_fit_res$fstatistic[1], 1))`, p < 0.001), indicating a good fit of the polynomial regression model to the data.
+Interestingly, @fig-plot-loi-map (top) illustrates the relationship between the first axis of the correspondence analysis and the loss on ignition (LOI) of the samples [see @frerebeau2020a for the LOI data]. It is observed that the LOI is inversely correlated with the coordinates of the individuals along the first axis. To further explore this relationship, a second-order polynomial regression analysis was conducted. The results indicated that the overall regression was statistically significant (RSE = `r round(loi_fit_res$sigma, 2)` on `r  loi_fit_res$df[2]` degrees of freedom, R^2^ = `r round(loi_fit_res$r.squared, 2)`, adjusted R^2^ = `r round(loi_fit_res$adj.r.squared, 2)`, `r sprintf("F(%g, %g) = %g", loi_fit_res$fstatistic[2], loi_fit_res$fstatistic[3], round(loi_fit_res$fstatistic[1], 1))`, p < 0.001), indicating a good fit of the polynomial regression model to the data.
 
-The Guttman effect arises from the unimodal distribution of observed variables along a gradient, suggesting the possibility of ordering these variables along the same gradient. Our results strongly suggest that the gradient under consideration is related to the firing process: the first axis represents the opposition between minerals present in the raw material and those formed during firing. These secondary minerals gradually form during the firing process as conditions change and are likely to be consumed in subsequent chemical reactions. Hence, a unimodal distribution can be expected for various $2\theta$ positions along this gradient.
+Therefore, it appears that the ceramics from Mas de Moreno can be ordered according to the progress of these mineralogical transformations or, equivalently, according to the energy received during the firing (@fig-plot-loi-map, bottom).
 
-# DISCUSSION
+## Archaeological implications
+
+The material from the Mas de Moreno is the result of waste from the production process. It is therefore necessary to distinguish between what is representative of material produced in the workshop and what is the result of a non-desirable situation leading to deliberate rejection (firing defect). In order to explore these two hypotheses, the diffratograms of several artifacts from consumption contexts (El Palao and Torre Cremada) were introduced into the previous analysis as supplementary individuals. This was made possible by the technical homogeneity of the material studied. Samples from El Palao and Torre Cremada have the same compositional ranges and belong to the same category of Iberian fine wares as the material from Mas de Moreno.
+
+These additional individuals are all situated in the lower section of the first plane of the correspondence analysis (@fig-plot-guttman D). This enables the differentiation of the artifacts from Mas de Moreno into those associated with regular production and those linked to misfiring (i.e., individuals located in the upper right quadrant; @fig-plot-guttman A and D, @fig-plot-loi-map bottom). Individuals reflecting a typical production pattern exhibit peaks related to gehlenite rather than anorthite and diopside. This suggests a certain level of control over the energy input during firing to allow the development of this intermediate phase.
+
+The firing process must be carefully controlled to maintain a favorable balance between benefits and risks throughout production. In the context of Iberian ceramics, the management of thermal parameters is primarily understood as a strategy to utilize calcareous materials without the risk of lime blowing [@petitdominguez2003, @cultrone2011]. However, the thermal decomposition of calcium carbonates is a necessary process to achieve the desired characteristics, especially aesthetic qualities.
+
+By incorporating iron, the formation of calcium silicates during firing limits the development of coloration induced by the presence of iron oxides in the matrix. This occurs because iron can be integrated into amorphous or crystalline phases through substitution, rather than remaining as free oxides, thereby affecting its chromogenic properties. The cations Fe^2+^ and Fe^3+^ are incorporated into pyroxenes (preferably in octahedral coordination) through solid-state diffusion, replacing Mg^2+^ and Ca^2+^ ions, or into melilite-group phases (in tetrahedral coordination). This process prevents the formation of spinel compounds [@vedder1969; @nodari2007] and plays a fundamental role in the manufacturing process of Iberian ceramics, as it allows for the attainment of a characteristic pink-colored surface.
+
+Finally, it is worth noting that there appears to be no relationship with chronology (@fig-plot-guttman B). Despite significant workshop modifications, including the adoption of a large amphora kiln that resulted in a shift in production quantities during the final years of the workshop's operation [@gorgues2012], the produced artefacts exhibit consistent mineralogical characteristics.
 
 # CONCLUSION
 
+The initial application of correspondence analysis to X-ray powder diffraction (XRPD) data of ceramic materials revealed the significant potential of this statistical method in the technological analysis of ancient pottery. The main advantage is the possibility of ordering a large number of samples according to a firing gradient. This allows for the tracking of mineralogical transformations occurring during firing and facilitates more precise comparisons than those based on estimating the equivalent firing temperature. Furthermore, this method enables the construction of calibration data sets from workshops, which can then be utilized to assess the firing of materials discovered in specific contexts.
+
+However, a number of limitations need to be highlighted. Firstly, this method only allows us to obtain a relative order, without being able to identify any gaps in the sequence. Secondly, this approach relies on homogeneity conditions and mathematical assumptions that can be derived from the conditions formulated by @dunnell1970 for chronological seriation. The homogeneity conditions state that all the groups included in such a study must: (1) be of comparable raw materials, (2) belong to the same technological tradition, (3) come from the same local area. The mathematical assumptions state that the distribution of any mineralogical class is continuous through firing and exhibits the form of a unimodal curve. This last point is undoubtedly the most delicate, as many diffraction angles are paired with several minerals. Moreover, diffraction patterns depend not only on the mineralogical composition of the samples, but also on instrumental settings and counting statistics, which currently prevents the reuse of data acquired under different conditions.
+
+These constraints will serve as a guide for future work. One of the next steps will be to work on variable selection. The use of whole diffractograms leads to the construction of data matrices which tend to be sparse (a large portion of entries consists of zeros) and there is much redundant information. Finally, the use of resampling methods, such as bootstrapped approaches, should improve the stability of relative orderings, as shown by @peeples2012.
 # ACKNOWLEDGEMENTS
 
 This study has received a State financial support managed by the French Agence Nationale de la Recherche under the program *Investissements d'avenir* (ANR-10-LABX-52).
@@ -643,7 +705,7 @@ The author is grateful to Alexis Gorgues (UMR 5607 Institut Ausonius) and José 
 
 The data that support the findings of this study are openly available in [@frerebeau2015h] and [@frerebeau2015i].
 
-Code for data cleaning and analysis is provided as compendium in @frerebeau2023a.
+Code for data cleaning and analysis is provided as a compendium in @frerebeau2023a.
 
 \newpage
 
