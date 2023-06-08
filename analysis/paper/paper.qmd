@@ -42,11 +42,19 @@ filters:
 bibliography: [references.bib, packages.bib]
 csl: "../templates/archeosciences.csl"
 abstract: |
-  Abstract
+  The study of the firing of archaeological ceramics is thus a key factor in 
+  interpreting ancient techniques and related social practices. This study 
+  proposes a new method based on the correspondence analysis of powder X-ray 
+  diffraction data (XRD), aiming to provide an alternative to the so-called
+  Equivalent Firing Temperature framework. The properties of correspondence 
+  analysis and its application for matrix seriation enable the description of 
+  the firing of a ceramic assemblage. The application of correspondence 
+  analysis to XRD data of Iron Age ceramics revealed the  significant potential 
+  of this statistical method in the technological analysis of ancient pottery. 
+  This allows to order of a large number of samples according to a firing 
+  gradient and to track mineralogical transformations occurring during firing.
 keywords: |
   X-ray diffraction; ceramic firing; correspondence analysis; matrix seriation
-highlights: |
-  These are the highlights. 
 ---
 
 ```{r}
@@ -55,13 +63,6 @@ options(knitr.kable.NA = "")
 ```
 
 Keywords: `r rmarkdown::metadata$keywords`
-
-```{r}
-#| label: graphical-abstract
-#| fig-align: center
-#| out.width: "4in"
-knitr::include_graphics(here::here("analysis/figures/abstract.png"))
-```
 
 \newpage
 
@@ -73,13 +74,20 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 | **Version** | **Date**   | **Description**            | **DOI** |
 |------------:|-----------:|:---------------------------|:--------|
-| 0.0.0.9000  |  | Submitted to _Archéosciences, revue d'Archéométrie_ |  |
+| 0.0.0.9000  |  | Submitted to _Archéosciences_ |  |
+
+```{r}
+#| label: graphical-abstract
+#| fig-align: center
+#| out.width: "4in"
+knitr::include_graphics(here::here("analysis/figures/abstract.png"))
+```
 
 \newpage
 
 <!-- The actual document text starts here: -->
 
-# INTRODUCTION
+# Introduction
 
 Firing is a "strategic step" [@lemonnier1983a] of the ceramic production process: its success largely determines the final mechanical, refractory and --- to some extent --- aesthetic properties of the artifacts. Moreover, in case of failure this step involves the risk of losing all or part of the load to be fired and the associated human labor time. The study of the firing of archaeological ceramics is thus a key factor in interpreting ancient techniques and related social practices. In this regard, significant methodological research has been carried out since the pioneering work of @shepard1936, leading to the widespread use of the so-called *Equivalent Firing Temperatures* (EFT) as a way to describe the firing of archaeological ceramics [@tite1969; @tite1969a]. The EFT is a point estimator tied to standard experimental conditions, defined as "the temperature maintained for one hour which would produce the observed mineralogy or microstructure" [@tite1995].
 
@@ -93,7 +101,7 @@ Limited work has been done on the use of multivariate methods for the analysis o
 
 In this study, we show that correspondence analysis (CA) of X-ray diffractograms can be used to assess the firing of ceramic materials. The properties of correspondence analysis and its application for matrix seriation enable the description of the firing of a ceramic assemblage and identification of outliers. Calibration data sets can be produced solely based on archaeological evidence to assess ceramic firing practices, eliminating the need for laboratory references. To illustrate this method, we examine XRD data of Iron Age ceramics from the Mas de Moreno workshop (Teruel, Aragon, Spain).
 
-# MATERIAL and METHODS
+# Material and method
 ## Archaeological samples
 
 Sampling was carried out in such a way that each sample was taken from a single artifact. Particular attention was paid to the risk of contamination by systematically discarding sherds that had been glued back together or that had undergone any chemical treatment.
@@ -208,7 +216,7 @@ pkg <- vapply(
 
 All the data processing and statistical analysis were performed with `r R.version$version.string` [@R-base] and the following packages: `r paste0(pkg, collapse = ", ")`. The R code is openly available in @frerebeau2023a and allows to replicate all the results presented below.
 
-# RESULTS AND DISCUSSION
+# Results and discussion
 ## Correspondence analysis
 
 ```{r}
@@ -701,7 +709,7 @@ By incorporating iron, the formation of calcium silicates during firing limits t
 
 Finally, it is worth noting that there appears to be no relationship with chronology (@fig-plot-guttman B). Despite significant workshop modifications, including the adoption of a large amphora kiln that resulted in a shift in production quantities during the final years of the workshop's operation [@gorgues2012], the produced artefacts exhibit consistent mineralogical characteristics.
 
-# CONCLUSION
+# Conclusion
 
 The initial application of correspondence analysis to X-ray powder diffraction data of ceramic materials revealed the significant potential of this statistical method in the technological analysis of ancient pottery. The main advantage is the possibility of ordering a large number of samples according to a firing gradient. This allows for the tracking of mineralogical transformations occurring during firing and facilitates more precise comparisons than those based on estimating the equivalent firing temperature. Furthermore, this method enables the construction of calibration data sets from workshops, which can then be utilized to assess the firing of materials discovered in specific contexts.
 
@@ -709,13 +717,13 @@ However, a number of limitations need to be highlighted. Firstly, this method on
 
 These constraints will serve as a guide for future work. One of the next steps will be to work on variable selection. The use of whole diffractograms leads to the construction of a data matrix which tend to be sparse (a large portion of entries consists of zeros) and there is much redundant information. Finally, the use of resampling methods, such as bootstrapped approaches, should improve the stability of relative orderings, as shown by @peeples2012.
 
-# ACKNOWLEDGEMENTS
+# Acknowledgements
 
 This study has received a State financial support managed by the French Agence Nationale de la Recherche under the program *Investissements d'avenir* (ANR-10-LABX-52).
 
 The author is grateful to Alexis Gorgues (UMR 5607 Institut Ausonius) and José Antonio Benavente (Consorcio Patrimonio Ibérico de Aragón) for providing access to archaeological material.
 
-# DATA AVAILABILITY STATEMENT
+# Data availability statement
 
 The data that support the findings of this study are openly available in @frerebeau2015g, @frerebeau2015e, @frerebeau2015h, @frerebeau2015i.
 
@@ -723,7 +731,7 @@ The R code for data cleaning and analysis is openly available as a compendium in
 
 \newpage
 
-# REFERENCES
+# References
 
 <!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
 
