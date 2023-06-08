@@ -60,23 +60,23 @@ BDX15665,ceramic,Mas de Moreno,production,21041,3,cup,body,1,7.37
 BDX15666,ceramic,Mas de Moreno,production,21041,3,storage jar,rim,0,6.09
 BDX15668,ceramic,Mas de Moreno,production,21041,3,cup,rim,1,4.92
 BDX15669,ceramic,Mas de Moreno,production,21041,3,goblet,rim,0,8.19
-BDX15671,ceramic,Torre Cremada,consumption,E11.84,0,unknown,body,1,5.65
-BDX15673,ceramic,Torre Cremada,consumption,E11.85,0,unknown,body,1,4.87
-BDX15674,ceramic,Torre Cremada,consumption,E11.86,0,unknown,rim,1,3.41
-BDX15675,ceramic,Torre Cremada,consumption,E11.84,0,unknown,rim,0,7.26
-BDX15676,ceramic,Torre Cremada,consumption,E11.60,0,storage jar,rim,0,7.70
-BDX15679,ceramic,Torre Cremada,consumption,E11.60,0,storage jar,body,0,7.40
-BDX15680,ceramic,Torre Cremada,consumption,E9.75,0,storage jar,body,0,6.28
-BDX16441,ceramic,El Palao,consumption,25146,0,unknown,rim,0,12.76
-BDX16443,ceramic,El Palao,consumption,25146,0,unknown,rim,1,16.48
-BDX16444,ceramic,El Palao,consumption,25146,0,unknown,rim,0,3.15
-BDX16445,ceramic,El Palao,consumption,25117,0,unknown,rim,1,7.87
-BDX16446,ceramic,El Palao,consumption,25117,0,unknown,rim,1,14.01
-BDX16447,ceramic,El Palao,consumption,25117,0,unknown,rim,0,NA
-BDX16449,ceramic,El Palao,consumption,25117,0,unknown,rim,1,5.78
-BDX16451,ceramic,El Palao,consumption,25117,0,storage jar,rim,1,11.27
-BDX16452,ceramic,El Palao,consumption,25117,0,unknown,rim,1,10.82
-BDX16453,ceramic,El Palao,consumption,25117,0,unknown,rim,1,8.48
+BDX15671,ceramic,Torre Cremada,consumption,E11.84,,unknown,body,1,5.65
+BDX15673,ceramic,Torre Cremada,consumption,E11.85,,unknown,body,1,4.87
+BDX15674,ceramic,Torre Cremada,consumption,E11.86,,unknown,rim,1,3.41
+BDX15675,ceramic,Torre Cremada,consumption,E11.84,,unknown,rim,0,7.26
+BDX15676,ceramic,Torre Cremada,consumption,E11.60,,storage jar,rim,0,7.70
+BDX15679,ceramic,Torre Cremada,consumption,E11.60,,storage jar,body,0,7.40
+BDX15680,ceramic,Torre Cremada,consumption,E9.75,,storage jar,body,0,6.28
+BDX16441,ceramic,El Palao,consumption,25146,,unknown,rim,0,12.76
+BDX16443,ceramic,El Palao,consumption,25146,,unknown,rim,1,16.48
+BDX16444,ceramic,El Palao,consumption,25146,,unknown,rim,0,3.15
+BDX16445,ceramic,El Palao,consumption,25117,,unknown,rim,1,7.87
+BDX16446,ceramic,El Palao,consumption,25117,,unknown,rim,1,14.01
+BDX16447,ceramic,El Palao,consumption,25117,,unknown,rim,0,NA
+BDX16449,ceramic,El Palao,consumption,25117,,unknown,rim,1,5.78
+BDX16451,ceramic,El Palao,consumption,25117,,storage jar,rim,1,11.27
+BDX16452,ceramic,El Palao,consumption,25117,,unknown,rim,1,10.82
+BDX16453,ceramic,El Palao,consumption,25117,,unknown,rim,1,8.48
 BDX17428,ceramic,Mas de Moreno,production,15227,2,cup,body,0,1.37
 BDX17429,ceramic,Mas de Moreno,production,15227,2,cup,rim,0,2.13
 BDX17430,ceramic,Mas de Moreno,production,15227,2,common ware,body,0,1.18

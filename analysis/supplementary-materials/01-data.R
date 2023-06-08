@@ -8,6 +8,50 @@ get_bdx <- function(file) {
   regmatches(x = file, m = regexpr(pattern = "BDX[0-9]{5}", text = file))
 }
 
+#' Geometric Mean
+#'
+#' @param x A [`numeric`] vector.
+#' @param trim A length-one [`numeric`] vector specifying the fraction (0 to 0.5)
+#'  of observations to be trimmed from each end of `x` before the mean is
+#'  computed.
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @return A [`numeric`] vector.
+#' @noRd
+gmean <- function(x, trim = 0, na.rm = FALSE) {
+  index <- is.finite(x) & x > 0
+  exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
+}
+
+# READ WD-XRF ==================================================================
+## List all files
+here::here("analysis/data/raw_data") |>
+  list.files(pattern = "WDXRF", full.names = TRUE) |>
+  lapply(
+    FUN = function(x) {
+      xrf <- read.table(x, header = TRUE, sep = ",", dec = ".")
+      xrf$site <- gsub("\\s*\\([^\\)]+\\)", "", xrf$site)
+      xrf[, c("sample", "site", "CaO", "SiO2", "Al2O3")]
+    }
+  ) |>
+  do.call(rbind, args = _) |>
+  (function(x) split(x, f = x$sample))() |>
+  lapply(
+    FUN = function(x) {
+      if (nrow(x) == 1) return(x)
+      x$sample = unique(x$sample)
+      x$site = unique(x$site)
+      x$CaO = gmean(x$CaO)
+      x$SiO2 = gmean(x$SiO2)
+      x$Al2O3 = gmean(x$Al2O3)
+    }
+  ) |>
+  do.call(rbind, args = _) |>
+  utils::write.table(
+    file = here::here("analysis/data/derived_data/xrf_cas.csv"),
+    sep = ",", dec = ".", row.names = FALSE,
+  )
+
 # READ XRD =====================================================================
 ## List all diffractograms (Brucker RAW)
 xrd_files <- here::here("analysis/data/raw_data") |>
@@ -94,7 +138,7 @@ for (i in seq_along(xrd_data)) {
   selected$y <- selected$y - baseline$y
   lines(selected, col = "blue")
 
-  ## Subset from 5° to 55° (2theta)
+  ## Subset from 4° to 54° (2theta)
   selected <- alkahest::signal_select(selected, from = 4, to = 54)
 
   ## Replace negative values by 0
