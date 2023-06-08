@@ -28,13 +28,14 @@ format:
       - oneside
   docx:
     reference-doc: "../templates/template.docx" # Insert path for the DOCX file
-execute:
-  echo: false
-  warning: false
-  message: false
-  comment: "#>"
-  fig-path: "../figures/"
-  fig-dpi: 600
+knitr:
+  opts_chunk:
+    echo: false
+    warning: false
+    message: false
+    comment: "#>"
+    fig.path: "../figures/"
+    fig.dpi: 600
 filters:
   - ../templates/scholarly-metadata.lua
   - ../templates/author-info-blocks.lua
