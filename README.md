@@ -14,7 +14,7 @@ Please cite this compendium as:
 
 > Frerebeau, N. (2023). *Compendium of R code and data for Assessing the
 > Firing of Ceramic Materials: a Seriation-Based Approach*. Accessed 09
-> juin 2023.
+> juin 2023. Online at <https://doi.org/10.5281/zenodo.8020137>
 
 ## Contents
 

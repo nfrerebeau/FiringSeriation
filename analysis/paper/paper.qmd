@@ -76,8 +76,8 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 # Change record {-}
 
 | **Version** | **Date**   | **Description**            | **DOI** |
-|------------:|-----------:|:---------------------------|:--------|
-| 1.0.0       | 2023-06-09 | Submitted to _Archéosciences_ |  |
+|---------:|-----------:|:------------------------------|:---------------------------|
+| 1.0.0    | 2023-06-09 | Submitted to _Archéosciences_ | [10.5281/zenodo.8020137](https://doi.org/10.5281/zenodo.8020137) |
 
 ```{r}
 #| label: graphical-abstract
