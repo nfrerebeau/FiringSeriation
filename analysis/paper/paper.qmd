@@ -43,7 +43,7 @@ filters:
 bibliography: [references.bib, packages.bib]
 csl: "../templates/archeosciences.csl"
 abstract: |
-  The study of the firing of archaeological ceramics is thus a key factor in 
+  The study of the firing of archaeological ceramics is a key factor in 
   interpreting ancient techniques and related social practices. This study 
   proposes a new method based on the correspondence analysis of powder X-ray 
   diffraction data (XRD), aiming to provide an alternative to the so-called
@@ -54,6 +54,8 @@ abstract: |
   of this statistical method in the technological analysis of ancient pottery. 
   This allows to order of a large number of samples according to a firing 
   gradient and to track mineralogical transformations occurring during firing.
+  This method should let to more precise comparisons than those based on 
+  estimating the equivalent firing temperature.
 keywords: |
   X-ray diffraction; ceramic firing; correspondence analysis; matrix seriation
 ---
@@ -112,6 +114,11 @@ Sampling was carried out in such a way that each sample was taken from a single 
 ## Read archaeological data
 corpus <- here::here("analysis/data/raw_data/corpus.csv") |>
   read.table(sep = ",", dec = ".", header = TRUE, encoding = "UTF-8")
+
+## Read XRF data
+xrf_cas <- here::here("analysis/data/derived_data/xrf_cas.csv") |> 
+  read.table(header = TRUE, sep = ",", dec = ".") |> 
+  subset(sample %in% corpus$sample)
 ```
 
 `r sum(corpus$material == "ceramic" & corpus$site == "Mas de Moreno")` ceramics from the Mas de Moreno workshop (Foz-Calanda, Teruel, Aragon) were sampled to represent the entire period of the workshop's activity (@tbl-corpus). The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
@@ -124,10 +131,18 @@ Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` 
 
 ```{r}
 #| label: tbl-corpus
-#| tbl-cap: "Ceramic and clay samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. SU: stratigraphic unit. LOI: loss on ignition [see @frerebeau2020a; @frerebeau2015e; @frerebeau2015g]."
-corpus[order(corpus$sample), !(colnames(corpus) %in% c("site_type", "decoration", "part"))] |> 
+#| tbl-cap: "Ceramic and clay (unfired pottery sherds) samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. LOI: loss on ignition [@frerebeau2020a; @frerebeau2015g; @frerebeau2015e]."
+corpus |> 
+  merge(y = xrf_cas[, -2], by = "sample") |> 
+  (function(x) x[order(x$sample), ])() |> 
+  (function(x) x[, !(colnames(x) %in% c("site_type", "stratigraphy", "artefact", "decoration", "part"))])() |> 
+  (function(x) {
+    write.table(x, file = here::here("analysis/tables/corpus.csv"), 
+                col.names = TRUE, row.names = FALSE, sep = ",", dec = ".")
+    x
+  })() |> 
   knitr::kable(
-    col.names = c("Sample", "Material", "Site", "SU", "Phase", "Type", "LOI (%)"),
+    col.names = c("Sample", "Material", "Site", "Phase", "LOI (%)", "CaO (%)", "SiO2 (%)", "Al2O3 (%)"),
     booktabs = TRUE,
     longtable = TRUE
   )
@@ -484,10 +499,6 @@ legend("bottomright", legend = c(levels(as.factor(corpus$site[corpus$site != "Ma
        pch = c(24, 25, 16), pt.bg = col_site, col = c("black", "black", "lightgrey"))
 
 ## Ternary plot
-xrf_cas <- here::here("analysis/data/derived_data/xrf_cas.csv") |> 
-  read.table(header = TRUE, sep = ",", dec = ".") |> 
-  subset(sample %in% corpus$sample)
-
 par(mar = c(1, 1, 1, 1))
 isopleuros::ternary_plot(
   xrf_cas[xrf_cas$site == "Mas de Moreno", c("CaO", "Al2O3", "SiO2")],
@@ -732,15 +743,6 @@ The R code for data cleaning and analysis is openly available as a compendium in
 
 \newpage
 
-# References
-
-<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
-
-::: {#refs}
-:::
-
-\newpage
-
 # Colophon {-}
 
 This report was generated on `r Sys.time()` using the following computational environment and dependencies:
@@ -752,3 +754,7 @@ This report was generated on `r Sys.time()` using the following computational en
 # which R packages and versions?
 sessionInfo()
 ```
+
+\newpage
+
+# References

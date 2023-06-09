@@ -23,36 +23,8 @@ gmean <- function(x, trim = 0, na.rm = FALSE) {
   exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
 }
 
-# READ WD-XRF ==================================================================
-## List all files
-here::here("analysis/data/raw_data") |>
-  list.files(pattern = "WDXRF", full.names = TRUE) |>
-  lapply(
-    FUN = function(x) {
-      xrf <- read.table(x, header = TRUE, sep = ",", dec = ".")
-      xrf$site <- gsub("\\s*\\([^\\)]+\\)", "", xrf$site)
-      xrf[, c("sample", "site", "CaO", "SiO2", "Al2O3")]
-    }
-  ) |>
-  do.call(rbind, args = _) |>
-  (function(x) split(x, f = x$sample))() |>
-  lapply(
-    FUN = function(x) {
-      if (nrow(x) == 1) return(x)
-      x$sample = unique(x$sample)
-      x$site = unique(x$site)
-      x$CaO = gmean(x$CaO)
-      x$SiO2 = gmean(x$SiO2)
-      x$Al2O3 = gmean(x$Al2O3)
-    }
-  ) |>
-  do.call(rbind, args = _) |>
-  utils::write.table(
-    file = here::here("analysis/data/derived_data/xrf_cas.csv"),
-    sep = ",", dec = ".", row.names = FALSE,
-  )
-
-# READ XRD =====================================================================
+# XRD ==========================================================================
+## READ ------------------------------------------------------------------------
 ## List all diffractograms (Brucker RAW)
 xrd_files <- here::here("analysis/data/raw_data") |>
   list.files(pattern = ".raw", full.names = TRUE)
@@ -89,7 +61,7 @@ for (i in xrd_data) {
   lines(x = i[[1]], y = i[[2]])
 }
 
-# PRE-PROCESS ==================================================================
+## PRE-PROCESS -----------------------------------------------------------------
 ## Penalized likelihood smoothing
 lambda <- seq(from = 1, to = 8, length.out = 40)
 lambda <- 10^lambda
@@ -156,7 +128,7 @@ for (i in seq_along(xrd_data)) {
   dev.off()
 }
 
-# WRITE ========================================================================
+## WRITE -----------------------------------------------------------------------
 ## Build a data.frame
 xrd_data_table <- Reduce(
   f = function(x, y) merge(x, y, by = "theta", all = TRUE, sort = FALSE),
@@ -178,3 +150,33 @@ utils::write.table(
   file = here::here("analysis/data/derived_data/xrd_clean.csv"),
   sep = ",", dec = ".", row.names = FALSE,
 )
+
+# WD-XRF =======================================================================
+## List all files
+here::here("analysis/data/raw_data") |>
+  list.files(pattern = "WDXRF", full.names = TRUE) |>
+  lapply(
+    FUN = function(x) {
+      xrf <- read.table(x, header = TRUE, sep = ",", dec = ".")
+      xrf$site <- gsub("\\s*\\([^\\)]+\\)", "", xrf$site)
+      xrf[, c("sample", "site", "CaO", "SiO2", "Al2O3")]
+    }
+  ) |>
+  do.call(rbind, args = _) |>
+  subset(sample %in% xrd_samples) |>
+  (function(x) split(x, f = x$sample))() |>
+  lapply(
+    FUN = function(x) {
+      if (nrow(x) == 1) return(x)
+      x$sample = unique(x$sample)
+      x$site = unique(x$site)
+      x$CaO = gmean(x$CaO)
+      x$SiO2 = gmean(x$SiO2)
+      x$Al2O3 = gmean(x$Al2O3)
+    }
+  ) |>
+  do.call(rbind, args = _) |>
+  utils::write.table(
+    file = here::here("analysis/data/derived_data/xrf_cas.csv"),
+    sep = ",", dec = ".", row.names = FALSE,
+  )
