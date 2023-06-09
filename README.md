@@ -7,15 +7,14 @@ This repository contains the data and code for our paper:
 
 > Frerebeau, N. (2023). *Assessing the Firing of Ceramic Materials: a
 > Seriation-Based Approach*. *Archéosciences, revue d’Archéométrie*.
-> <https://doi.org/xxx/xxx>
 
 ### How to cite
 
 Please cite this compendium as:
 
 > Frerebeau, N. (2023). *Compendium of R code and data for Assessing the
-> Firing of Ceramic Materials: a Seriation-Based Approach*. Accessed 08
-> juin 2023. Online at <https://doi.org/xxx/xxx>
+> Firing of Ceramic Materials: a Seriation-Based Approach*. Accessed 09
+> juin 2023.
 
 ## Contents
 
@@ -67,10 +66,3 @@ renv::restore()
 **Code :** See the [DESCRIPTION](DESCRIPTION) file
 
 **Data :** [CC-BY-4.0](http://creativecommons.org/licenses/by/4.0/)
-
-### Contributions
-
-We welcome contributions from everyone. Before you get started, please
-see our [contributor guidelines](CONTRIBUTING.md). Please note that this
-project is released with a [Contributor Code of Conduct](CONDUCT.md). By
-participating in this project you agree to abide by its terms.
