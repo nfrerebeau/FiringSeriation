@@ -52,7 +52,7 @@ abstract: |
   the firing of a ceramic assemblage. The application of correspondence 
   analysis to XRD data of Iron Age ceramics revealed the  significant potential 
   of this statistical method in the technological analysis of ancient pottery. 
-  This allows to order of a large number of samples according to a firing 
+  This allows to order a large number of samples according to a firing 
   gradient and to track mineralogical transformations occurring during firing.
   This method should let to more precise comparisons than those based on 
   estimating the equivalent firing temperature.
@@ -77,7 +77,8 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 
 | **Version** | **Date**   | **Description**            | **DOI** |
 |---------:|-----------:|:------------------------------|:---------------------------|
-| 1.0.0    | 2023-06-09 | Submitted to _Archéosciences_ | [10.5281/zenodo.8020137](https://doi.org/10.5281/zenodo.8020137) |
+| 1.0      | 2023-06-09 | Submitted to _Archéosciences_ | [10.5281/zenodo.8020137](https://doi.org/10.5281/zenodo.8020137) |
+| 1.1      | 2023-08-01 | Corrections based on reviews  | |
 
 ```{r}
 #| label: graphical-abstract
@@ -193,9 +194,11 @@ Finally, all the diffractograms were combined into a `r paste0(dim(xrd_counts[, 
 
 We will only briefly recall the main aspects of correspondence analysis, as a detailed review of its mathematical properties is beyond the scope of this article [for an in-depth discussion, see @greenacre2007; @lebart2006].
 
-Correspondence analysis (CA) is similar to principal component analysis (PCA) in that it allows describing the statistical relationships that can exist between individuals and variables. However, the concept of similarity between rows and columns is different. In CA, two rows (resp. columns) are close to each other if they associate with columns (resp. rows) in the same way. Unlike PCA, CA analyzes the differences between relative values and considers both individuals and variables at the same time (this allows for the projection of row and column points in the same coordinate space). CA studies the inertia (i.e., the weighted sum of the χ2 distances of each point to the centroid) to create orthogonal components so that a maximum of the total inertia is represented on the first component, a maximum of the residual inertia on the second component, and so on until the last dimension. CA maximizes the correspondence between individuals and variables instead of maximizing the amount of variance explained by its reduced space.
+Correspondence analysis (CA) is similar to principal component analysis (PCA) in that it allows describing the statistical relationships that can exist between individuals and variables. However, the concept of similarity between rows and columns is different. In CA, two rows (resp. columns) are close to each other if they associate with columns (resp. rows) in the same way. Unlike PCA, CA analyzes the differences between relative values and considers both individuals and variables at the same time. This allows for the projection of row and column points in the same coordinate space, so that the relative positions of one set of points provide the reading keys for interpreting the positions of the other set of points along the axes [@greenacre2007].
 
-CA is an effective method for the chronological seriation of archaeological assemblages [see @ihm2005 for an historical overview]. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time. CA is not limited to chronological modeling but is widely used to find a possible arrangement (ordering) of individuals and variables along any gradient, i.e., any aspect that is expected to be related to the observed composition (be it temporal or environmental).
+CA studies the inertia (i.e., the weighted sum of the $\chi^2$ distances of each point to the centroid) to create orthogonal components so that a maximum of the total inertia is represented on the first component, a maximum of the residual inertia on the second component, and so on until the last dimension. CA maximizes the correspondence between individuals and variables instead of maximizing the amount of variance explained by its reduced space.
+
+CA is an effective method for the chronological seriation of archaeological assemblages [see @ihm2005 for an historical overview]. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time. CA is not limited to chronological modelling but is widely used to find a possible arrangement (ordering) of individuals and variables along any gradient, i.e., any aspect that is expected to be related to the observed composition (be it temporal or environmental).
 
 ## Computational environment
 
@@ -248,7 +251,7 @@ xrd_moreno_col_coord <- dimensio::get_coordinates(xrd_moreno_ca, margin = 2)
 xrd_moreno_col_contrib <- dimensio::get_contributions(xrd_moreno_ca, margin = 2)
 ```
 
-The results of the correspondence analysis of the diffractograms are presented in @fig-plot-ca. Only the data from the analysis of the samples from Mas de Moreno were used, including unfired ceramics and shards. The data from El Palao and Torre Cremada were introduced into the analysis as supplementary individuals. These additional individuals do not contribute to the calculation of the correspondence analysis itself, but they are projected onto the existing analysis space to visualize their relationships with the original dataset.
+The results of the correspondence analysis of the diffractograms are presented in @fig-plot-ca. Only the data from the analysis of the samples from Mas de Moreno were used, including unfired ceramics and sherds. The data from El Palao and Torre Cremada were introduced into the analysis as supplementary individuals. These additional individuals do not contribute to the calculation of the correspondence analysis itself, but they are projected onto the existing analysis space to visualize their relationships with the original dataset.
 
 The first two dimensions are sufficient to retain about `r round(xrd_moreno_eig[2, 3])`% of the total inertia contained in the data (@fig-plot-ca A and B). Plotting the coordinates of the individuals shows an interesting pattern (@fig-plot-ca C). The upper quadrants each consist of a small group of closely located individuals, likely exhibiting high similarity to one another. The remaining samples are distributed in the lower quadrants.
 
@@ -352,7 +355,7 @@ text(
   col = col_minerals[as.factor(minerals$symbole)],
   pos = c(2,3, 2, 1, 4, 4, 4, 2, 2, 2, 4, 3, 3, 4, 3, 1, 4)
 )
-text(x = min(xlim), y = max(ylim) + 0.25, labels = "B", font = 2, cex = 1.5)
+text(x = min(xlim), y = max(ylim) + 0.25, labels = "D", font = 2, cex = 1.5)
 ```
 
 @fig-plot-contrib shows the contribution of the different columns to the construction of the first two CA-axes. It is important to note that the analysis is performed on the diffractograms: a diffraction peak represents a range of $2\theta$ positions, spanning multiple columns in the data matrix. Consequently, the columns that contribute the most to the construction of the first axis (with a contribution greater than 0.5) are associated with the following diffraction peaks: 21.94° (plagioclases), 26.64° (quartz), 27.76° (plagioclases), 27.90° (plagioclases), and 29.42° (calcite). Similarly, for the second axis, the columns that contribute the most are those corresponding to the peaks at 12.32° (phyllosilicate), 26.66° (quartz), and 31.36° (melilites).
@@ -408,7 +411,7 @@ mtext(expression(2*theta), side = 1, line = 2, outer = TRUE)
 #        y = pks_contrib2$y[pks_contrib2$y > 0.5])
 ```
 
-The first plane of the analysis exhibits the characteristic Guttman effect, also known as the arch effect (@fig-plot-ca, @fig-plot-guttman). This effect is characterized by a strong nonlinear relationship between the second factor and the first factor. The Guttman effect typically arises when a single dominant latent variable is present [@lebart2014]. Interestingly, the samples located in the upper right quadrant of the correspondence analysis plot are linked to diffraction peaks that correspond to clay minerals and calcite (@fig-plot-guttman A, @fig-plot-ca D, @fig-plot-xrd). These samples are positioned opposite to the ones associated with the peaks of diopside and anorthite along axis 1. Conversely, the samples located in the two lower quadrants are linked to the peaks of quartz and the melilite series.
+The first plane of the analysis exhibits the characteristic Guttman effect, also known as the arch effect (@fig-plot-ca, @fig-plot-guttman). This effect is characterized by a strong nonlinear relationship between the second factor and the first factor. The Guttman effect typically arises when a single dominant latent variable is present [@lebart2014]. Interestingly, the samples located in the upper left quadrant of the correspondence analysis plot are linked to diffraction peaks that correspond to clay minerals and calcite (@fig-plot-guttman A, @fig-plot-ca D, @fig-plot-xrd). These samples are positioned opposite to the ones associated with the peaks of diopside and anorthite along axis 1. Conversely, the samples located in the two lower quadrants are linked to the peaks of quartz and the melilite series.
 
 ```{r}
 #| label: fig-plot-guttman
@@ -711,7 +714,7 @@ Therefore, it appears that the ceramics from Mas de Moreno can be ordered accord
 
 ## Archaeological implications
 
-The material from the Mas de Moreno is the result of waste from the production process. It is therefore necessary to distinguish between what is representative of material produced in the workshop and what is the result of a non-desirable situation leading to deliberate rejection (firing defect). In order to explore these two hypotheses, the diffratograms of several artifacts from consumption contexts (El Palao and Torre Cremada) were introduced into the previous analysis as supplementary individuals. This was made possible by the technical homogeneity of the material studied. Samples from El Palao and Torre Cremada have the same compositional ranges (@fig-plot-guttman D) and belong to the same category of Iberian fine wares as the material from Mas de Moreno.
+The material from the Mas de Moreno is the result of waste from the production process. It is therefore necessary to distinguish between what is representative of material produced in the workshop and what is the result of a non-desirable situation leading to deliberate rejection (firing defect). In order to explore these two hypotheses, the diffractograms of several artifacts from consumption contexts (El Palao and Torre Cremada) were introduced into the previous analysis as supplementary individuals. This was made possible by the technical homogeneity of the material studied. Samples from El Palao and Torre Cremada have the same compositional ranges (@fig-plot-guttman D) and belong to the same category of Iberian fine wares as the material from Mas de Moreno.
 
 These additional individuals are all situated in the lower section of the first plane of the correspondence analysis (@fig-plot-guttman C). This enables the differentiation of the artifacts from Mas de Moreno into those associated with regular production and those linked to misfiring (i.e., individuals located in the upper right quadrant; @fig-plot-guttman A, @fig-plot-ca D, @fig-plot-loi-map bottom). Individuals reflecting a typical production pattern exhibit peaks related to gehlenite rather than anorthite and diopside. This suggests a certain level of control over the energy input during firing to allow the development of this intermediate phase.
 
