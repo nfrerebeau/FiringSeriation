@@ -5,41 +5,13 @@ author:
       correspondence: "yes"
       email: nicolas.frerebeau@u-bordeaux-montaigne.fr
       orcid: 0000-0001-5759-4944
-      affiliations:
-        - name: "UMR 6034 Archéosciences Bordeaux"
-          address: "Maison de l'Archéologie, Université Bordeaux Montaigne"
-          city: Pessac cedex
-          country: France
-          postal-code: 33607
-          url: https://www.archeosciences-bordeaux.fr
-title-block-published: "Last updated"  
-date: now
-date-format: long
-format: 
-  pdf: 
-    documentclass: scrartcl
-    include-in-header: 
-      - text: |
-          \usepackage{booktabs}
-    classoption: 
-      - french
-      - 12pt
-      - a4paper
-      - oneside
-  docx:
-    reference-doc: "../templates/template.docx" # Insert path for the DOCX file
-knitr:
-  opts_chunk:
-    echo: false
-    warning: false
-    message: false
-    comment: "#>"
-    fig.path: "../figures/"
-    fig.dpi: 600
-filters:
-  - ../templates/scholarly-metadata.lua
-  - ../templates/author-info-blocks.lua
-  - ../templates/pagebreak.lua
+      institute:
+        - AB
+institute:
+  - AB:
+      name: UMR 6034 Archéosciences Bordeaux
+      address: Maison de l'Archéologie, Université Bordeaux Montaigne, 33607 Pessac cedex, France
+date: "Accepted for publication on 2023-09-15"
 bibliography: [references.bib, packages.bib]
 csl: "../templates/archeosciences.csl"
 abstract: |
@@ -58,14 +30,41 @@ abstract: |
   estimating the equivalent firing temperature.
 keywords: |
   X-ray diffraction; ceramic firing; correspondence analysis; matrix seriation
+output: 
+  bookdown::pdf_document2:
+    toc: false
+    fig_caption: yes
+    number_sections: true
+    pandoc_args:
+    - --lua-filter=../templates/scholarly-metadata.lua
+    - --lua-filter=../templates/author-info-blocks.lua
+    - --lua-filter=../templates/pagebreak.lua
 ---
 
 ```{r}
 #| label: setup
+#| include: false
 options(knitr.kable.NA = "")
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  collapse = FALSE,
+  comment = "#>",
+  fig.path = "../figures/",
+  fig.dpi = 600
+)
 ```
 
 Keywords: `r rmarkdown::metadata$keywords`
+
+```{r}
+#| label: graphical-abstract
+#| fig-align: center
+#| out.width: "4in"
+knitr::include_graphics(here::here("analysis/figures/abstract.png"))
+```
 
 \newpage
 
@@ -79,13 +78,7 @@ This work is licensed under a [Creative Commons Attribution 4.0 International Li
 |---------:|-----------:|:------------------------------|:---------------------------|
 | 1.0      | 2023-06-09 | Submitted to _Archéosciences_ | [10.5281/zenodo.8020138](https://doi.org/10.5281/zenodo.8020138) |
 | 1.1      | 2023-08-01 | Corrections based on reviews  | [10.5281/zenodo.8204409](https://doi.org/10.5281/zenodo.8204409) |
-
-```{r}
-#| label: graphical-abstract
-#| fig-align: center
-#| out.width: "4in"
-knitr::include_graphics(here::here("analysis/figures/abstract.png"))
-```
+| 1.2      | 2023-09-15 | Accepted for publication      |  |
 
 \newpage
 
@@ -122,17 +115,16 @@ xrf_cas <- here::here("analysis/data/derived_data/xrf_cas.csv") |>
   subset(sample %in% corpus$sample)
 ```
 
-`r sum(corpus$material == "ceramic" & corpus$site == "Mas de Moreno")` ceramics from the Mas de Moreno workshop (Foz-Calanda, Teruel, Aragon) were sampled to represent the entire period of the workshop's activity (@tbl-corpus). The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
+`r sum(corpus$material == "ceramic" & corpus$site == "Mas de Moreno")` ceramics from the Mas de Moreno workshop (Foz-Calanda, Teruel, Aragon; table \@ref(tab:tbl-corpus)) were sampled to represent the entire period of the workshop's activity [@frerebeau2020a; @frerebeau2015g]. The workshop was active between 225-200 BC and 40-30 AD. Previous archaeological studies of the workshop have highlighted three successive phases of activity, characterized by changes in the productive space and the emergence of Roman elements [@gorgues2007; @gorgues2012]. Several kilns have been excavated, with discontinuation and destruction occurring around 50-40 BC [@gorgues2012]. The use of a larger amphora kiln, the production of Roman amphorae, and the presence of Latin epigraphy indicate a major reorganization of the workshop in the middle of the 1st century. The workshop ceased its activity in the following decade due to territorial reorganization under Roman influence and its distance from trade routes [@gorgues2012]. This workshop provides a context well-suited for investigating the technological choices related to ceramic firing in the Ebro Valley at the end of the Iron Age.
 
 The ceramic material of the Mas de Moreno consists only of products known as Iberian painted/fine wares. It refers to a wheel thrown production, with a pink uniform colour and a dark red painted decor, with no temper visible to the naked eye and considered to be fired at high temperatures in an oxidizing atmosphere [@tarradell1980; @mata1992; @collconesa2000]. Although Iberian fine wares present a significant technological uniformity [@tarradell1980], the sampling was conducted in such a way that all types of pottery produced in the workshop were included in the study (non-Iberian types produced at the end of the workshop's activity period were also sampled).
 
-A number of fragments of unfired potteries were also found during the excavation of the workshop [for a complete presentation of these unfired potsherds, see @frerebeau2017]. Of these, `r sum(corpus$material == "clay" & corpus$site == "Mas de Moreno")` samples have been analysed here (@tbl-corpus).
+A number of fragments of unfired potteries were also found during the excavation of the workshop [for a complete presentation of these unfired potsherds, see @frerebeau2017; @frerebeau2015e]. Of these, `r sum(corpus$material == "clay" & corpus$site == "Mas de Moreno")` samples have been analysed here (table \@ref(tab:tbl-corpus)).
 
-Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled (@tbl-corpus). These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dated between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study. Samples from El Palao and Torre Cremada have the same compositional ranges in the CaO-Al~2~O~3~-SiO~2~ system and belong to the same category of Iberian fine wares as the material from Mas de Moreno (see below).
+Finally, `r sum(corpus$material == "ceramic" & corpus$site != "Mas de Moreno")` additional Iberian fine wares were sampled (table \@ref(tab:tbl-corpus)). These came from two settlements close to the workshop: Torre Cremada (Valdeltormo, Teruel, Aragon; `r sum(corpus$site == "Torre Cremada")` samples from the 1^st^ century BC) and El Palao (Alcañiz, Teruel, Aragon; `r sum(corpus$site == "El Palao")` samples dated between the 8^th^ and the 4^th^ century BC). Comparisons with these two settlements are not intended to establish genetic relationships (in a provenance meaning), but rather to propose a comparative technology study. Samples from El Palao and Torre Cremada have the same compositional ranges in the CaO-Al~2~O~3~-SiO~2~ system and belong to the same category of Iberian fine wares as the material from Mas de Moreno (see below).
 
 ```{r}
 #| label: tbl-corpus
-#| tbl-cap: "Ceramic and clay (unfired pottery sherds) samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. LOI: loss on ignition [@frerebeau2020a; @frerebeau2015g; @frerebeau2015e]."
 corpus |> 
   merge(y = xrf_cas[, -2], by = "sample") |> 
   (function(x) x[order(x$sample), ])() |> 
@@ -144,6 +136,7 @@ corpus |>
   })() |> 
   knitr::kable(
     col.names = c("Sample", "Material", "Site", "Phase", "LOI (%)", "CaO (%)", "SiO2 (%)", "Al2O3 (%)"),
+    caption = "Ceramic and clay (unfired pottery sherds) samples analyzed in this study. Phase 1 : 2nd century BC; Phase 2: first half of the 1st century BC; Phase 3: 50-30 BC. LOI: loss on ignition.",
     booktabs = TRUE,
     longtable = TRUE
   )
@@ -251,9 +244,9 @@ xrd_moreno_col_coord <- dimensio::get_coordinates(xrd_moreno_ca, margin = 2)
 xrd_moreno_col_contrib <- dimensio::get_contributions(xrd_moreno_ca, margin = 2)
 ```
 
-The results of the correspondence analysis of the diffractograms are presented in @fig-plot-ca. Only the data from the analysis of the samples from Mas de Moreno were used, including unfired ceramics and sherds. The data from El Palao and Torre Cremada were introduced into the analysis as supplementary individuals. These additional individuals do not contribute to the calculation of the correspondence analysis itself, but they are projected onto the existing analysis space to visualize their relationships with the original dataset.
+The results of the correspondence analysis of the diffractograms are presented in fig. \@ref(fig:fig-plot-ca). Only the data from the analysis of the samples from Mas de Moreno were used, including unfired ceramics and sherds. The data from El Palao and Torre Cremada were introduced into the analysis as supplementary individuals. These additional individuals do not contribute to the calculation of the correspondence analysis itself, but they are projected onto the existing analysis space to visualize their relationships with the original dataset.
 
-The first two dimensions are sufficient to retain about `r round(xrd_moreno_eig[2, 3])`% of the total inertia contained in the data (@fig-plot-ca A and B). Plotting the coordinates of the individuals shows an interesting pattern (@fig-plot-ca C). The upper quadrants each consist of a small group of closely located individuals, likely exhibiting high similarity to one another. The remaining samples are distributed in the lower quadrants.
+The first two dimensions are sufficient to retain about `r round(xrd_moreno_eig[2, 3])`% of the total inertia contained in the data (fig. \@ref(fig:fig-plot-ca)A and B). Plotting the coordinates of the individuals shows an interesting pattern (fig. \@ref(fig:fig-plot-ca)C). The upper quadrants each consist of a small group of closely located individuals, likely exhibiting high similarity to one another. The remaining samples are distributed in the lower quadrants.
 
 ```{r}
 #| label: fig-plot-ca
@@ -358,7 +351,7 @@ text(
 text(x = min(xlim), y = max(ylim) + 0.25, labels = "D", font = 2, cex = 1.5)
 ```
 
-@fig-plot-contrib shows the contribution of the different columns to the construction of the first two CA-axes. It is important to note that the analysis is performed on the diffractograms: a diffraction peak represents a range of $2\theta$ positions, spanning multiple columns in the data matrix. Consequently, the columns that contribute the most to the construction of the first axis (with a contribution greater than 0.5) are associated with the following diffraction peaks: 21.94° (plagioclases), 26.64° (quartz), 27.76° (plagioclases), 27.90° (plagioclases), and 29.42° (calcite). Similarly, for the second axis, the columns that contribute the most are those corresponding to the peaks at 12.32° (phyllosilicate), 26.66° (quartz), and 31.36° (melilites).
+fig. \@ref(fig:fig-plot-contrib) shows the contribution of the different columns to the construction of the first two CA-axes. It is important to note that the analysis is performed on the diffractograms: a diffraction peak represents a range of $2\theta$ positions, spanning multiple columns in the data matrix. Consequently, the columns that contribute the most to the construction of the first axis (with a contribution greater than 0.5) are associated with the following diffraction peaks: 21.94° (plagioclases), 26.64° (quartz), 27.76° (plagioclases), 27.90° (plagioclases), and 29.42° (calcite). Similarly, for the second axis, the columns that contribute the most are those corresponding to the peaks at 12.32° (phyllosilicate), 26.66° (quartz), and 31.36° (melilites).
 
 ```{r}
 #| label: fig-plot-contrib
@@ -411,7 +404,7 @@ mtext(expression(2*theta), side = 1, line = 2, outer = TRUE)
 #        y = pks_contrib2$y[pks_contrib2$y > 0.5])
 ```
 
-The first plane of the analysis exhibits the characteristic Guttman effect, also known as the arch effect (@fig-plot-ca, @fig-plot-guttman). This effect is characterized by a strong nonlinear relationship between the second factor and the first factor. The Guttman effect typically arises when a single dominant latent variable is present [@lebart2014]. Interestingly, the samples located in the upper left quadrant of the correspondence analysis plot are linked to diffraction peaks that correspond to clay minerals and calcite (@fig-plot-guttman A, @fig-plot-ca D, @fig-plot-xrd). These samples are positioned opposite to the ones associated with the peaks of diopside and anorthite along axis 1. Conversely, the samples located in the two lower quadrants are linked to the peaks of quartz and the melilite series.
+The first plane of the analysis exhibits the characteristic Guttman effect, also known as the arch effect (fig. \@ref(fig:fig-plot-ca), \@ref(fig:fig-plot-guttman)). This effect is characterized by a strong nonlinear relationship between the second factor and the first factor. The Guttman effect typically arises when a single dominant latent variable is present [@lebart2014]. Interestingly, the samples located in the upper left quadrant of the correspondence analysis plot are linked to diffraction peaks that correspond to clay minerals and calcite (fig. \@ref(fig:fig-plot-guttman)A, \@ref(fig:fig-plot-ca)D, \@ref(fig:fig-plot-xrd)). These samples are positioned opposite to the ones associated with the peaks of diopside and anorthite along axis 1. Conversely, the samples located in the two lower quadrants are linked to the peaks of quartz and the melilite series.
 
 ```{r}
 #| label: fig-plot-guttman
@@ -518,7 +511,7 @@ text(x = 0, y = 0.9, labels = "D", font = 2, cex = 1.5)
 
 ```{r}
 #| label: fig-plot-xrd
-#| fig-cap: "Diffractograms of representative samples from each quadrant of the CA plot (see @fig-plot-ca). From top to bottom: upper left quadrant (BDX14922), lower left quadrant (BDX15451), lower right quadrant (BDX15465), upper right quadrant (BDX22203). Only the peaks that contribute the most to the construction of the first two CA axes are indexed (see text and @fig-plot-contrib)."
+#| fig-cap: "Diffractograms of representative samples from each quadrant of the CA plot (see fig. \\@ref(fig:fig-plot-ca)). From top to bottom: upper left quadrant (BDX14922), lower left quadrant (BDX15451), lower right quadrant (BDX15465), upper right quadrant (BDX22203). Only the peaks that contribute the most to the construction of the first two CA axes are indexed (see text and fig. \\@ref(fig:fig-plot-contrib))."
 #| fig-width: 10
 #| fig-height: 11
 par(mfrow = c(4, 1), mar = c(1, 0, 1, 1), oma = c(4, 4, 4, 0))
@@ -589,7 +582,7 @@ Archaeological ceramic thus constitute highly heterogeneous materials, allowing 
 * At the interface between quartz and phyllosilicates, the dehydroxylation of phyllosilicates leads to the expected formation of potassium feldspars and alumino-silicates (mullite). Similarly, the interaction between dolomite and quartz is likely to result in the appearance of diopside. Furthermore, the contact between calcite and quartz is expected to produce wollastonite, which appears to be an intermediate reaction promoting the formation of anorthite [@traore2000].
 * The interface between calcite, quartz, and phyllosilicates is anticipated to yield different calcium silicates (gehlenite, anorthite, wollastonite, and pyroxenes), sometimes accompanied by phases associated with the dehydroxylation of clay minerals, particularly potassium feldspars. The formation of gehlenite is a phenomenon that is accentuated by local enrichment in CaO.
 
-The principal axis of correspondence analysis is built upon the opposition between primary phases and secondary phases. The resulting projection highlights the progression of firing, in accordance with the expected mineralogical transformations (@fig-plot-ca D). The intermediate position of gehlenite can also be explained. The ceramics from Mas de Moreno all belong to the category of Ca-rich ceramics, as defined by @noll1991 [@frerebeau2020a]: within the CaO-Al~2~O~3~-SiO~2~ system, they fall within the quartz-anorthite-wollastonite triangle (@fig-plot-guttman D). In this case, the formed gehlenite is metastable. It serves as an intermediate product towards the formation of anorthite and wollastonite, linked to the diffusion of calcium through the matrix [@traore2000; @traore2003a]. As gehlenite forms a solid solution with akermanite (the melilite series), it can also promote the crystallization of diopside (primarily of the fassaite type) rather than anorthite [@dondi1998; @rathossi2010].
+The principal axis of correspondence analysis is built upon the opposition between primary phases and secondary phases. The resulting projection highlights the progression of firing, in accordance with the expected mineralogical transformations (fig. \@ref(fig:fig-plot-ca)D). The intermediate position of gehlenite can also be explained. The ceramics from Mas de Moreno all belong to the category of Ca-rich ceramics, as defined by @noll1991 [@frerebeau2020a]: within the CaO-Al~2~O~3~-SiO~2~ system, they fall within the quartz-anorthite-wollastonite triangle (fig. \@ref(fig:fig-plot-guttman)D). In this case, the formed gehlenite is metastable. It serves as an intermediate product towards the formation of anorthite and wollastonite, linked to the diffusion of calcium through the matrix [@traore2000; @traore2003a]. As gehlenite forms a solid solution with akermanite (the melilite series), it can also promote the crystallization of diopside (primarily of the fassaite type) rather than anorthite [@dondi1998; @rathossi2010].
 
 ```{r}
 #| label: fig-plot-loi-map
@@ -708,21 +701,21 @@ mtext(text = "production conditions", line = 0.5, side = 4, at = 35)
 mtext(text = "overfired", line = 0.5, side = 4, at = 66)
 ```
 
-Interestingly, @fig-plot-loi-map (top) illustrates the relationship between the first axis of the correspondence analysis and the loss on ignition (LOI) of the samples [see @frerebeau2020a for the LOI data]. It is observed that the LOI is inversely correlated with the coordinates of the individuals along the first axis. To further explore this relationship, a second-order polynomial regression analysis was conducted. The results indicated that the overall regression was statistically significant (RSE = `r round(loi_fit_res$sigma, 2)` on `r  loi_fit_res$df[2]` degrees of freedom, R^2^ = `r round(loi_fit_res$r.squared, 2)`, adjusted R^2^ = `r round(loi_fit_res$adj.r.squared, 2)`, `r sprintf("F(%g, %g) = %g", loi_fit_res$fstatistic[2], loi_fit_res$fstatistic[3], round(loi_fit_res$fstatistic[1], 1))`, p < 0.001), indicating a good fit of the polynomial regression model to the data.
+Interestingly, figure \@ref(fig:fig-plot-loi-map) (top) illustrates the relationship between the first axis of the correspondence analysis and the loss on ignition (LOI) of the samples [see @frerebeau2020a for the LOI data]. It is observed that the LOI is inversely correlated with the coordinates of the individuals along the first axis. To further explore this relationship, a second-order polynomial regression analysis was conducted. The results indicated that the overall regression was statistically significant (RSE = `r round(loi_fit_res$sigma, 2)` on `r  loi_fit_res$df[2]` degrees of freedom, R^2^ = `r round(loi_fit_res$r.squared, 2)`, adjusted R^2^ = `r round(loi_fit_res$adj.r.squared, 2)`, `r sprintf("F(%g, %g) = %g", loi_fit_res$fstatistic[2], loi_fit_res$fstatistic[3], round(loi_fit_res$fstatistic[1], 1))`, p < 0.001), indicating a good fit of the polynomial regression model to the data.
 
-Therefore, it appears that the ceramics from Mas de Moreno can be ordered according to the progress of these mineralogical transformations or, equivalently, according to the energy received during the firing (@fig-plot-loi-map, bottom).
+Therefore, it appears that the ceramics from Mas de Moreno can be ordered according to the progress of these mineralogical transformations or, equivalently, according to the energy received during the firing (fig. \@ref(fig:fig-plot-loi-map), bottom).
 
 ## Archaeological implications
 
-The material from the Mas de Moreno is the result of waste from the production process. It is therefore necessary to distinguish between what is representative of material produced in the workshop and what is the result of a non-desirable situation leading to deliberate rejection (firing defect). In order to explore these two hypotheses, the diffractograms of several artifacts from consumption contexts (El Palao and Torre Cremada) were introduced into the previous analysis as supplementary individuals. This was made possible by the technical homogeneity of the material studied. Samples from El Palao and Torre Cremada have the same compositional ranges (@fig-plot-guttman D) and belong to the same category of Iberian fine wares as the material from Mas de Moreno.
+The material from the Mas de Moreno is the result of waste from the production process. It is therefore necessary to distinguish between what is representative of material produced in the workshop and what is the result of a non-desirable situation leading to deliberate rejection (firing defect). In order to explore these two hypotheses, the diffractograms of several artifacts from consumption contexts (El Palao and Torre Cremada) were introduced into the previous analysis as supplementary individuals. This was made possible by the technical homogeneity of the material studied. Samples from El Palao and Torre Cremada have the same compositional ranges (fig. \@ref(fig:fig-plot-guttman)D) and belong to the same category of Iberian fine wares as the material from Mas de Moreno.
 
-These additional individuals are all situated in the lower section of the first plane of the correspondence analysis (@fig-plot-guttman C). This enables the differentiation of the artifacts from Mas de Moreno into those associated with regular production and those linked to misfiring (i.e., individuals located in the upper right quadrant; @fig-plot-guttman A, @fig-plot-ca D, @fig-plot-loi-map bottom). Individuals reflecting a typical production pattern exhibit peaks related to gehlenite rather than anorthite and diopside. This suggests a certain level of control over the energy input during firing to allow the development of this intermediate phase.
+These additional individuals are all situated in the lower section of the first plane of the correspondence analysis (fig. \@ref(fig:fig-plot-guttman)C). This enables the differentiation of the artifacts from Mas de Moreno into those associated with regular production and those linked to misfiring (i.e., individuals located in the upper right quadrant; fig. \@ref(fig:fig-plot-guttman)A, \@ref(fig:fig-plot-ca)D, \@ref(fig:fig-plot-loi-map) bottom). Individuals reflecting a typical production pattern exhibit peaks related to gehlenite rather than anorthite and diopside. This suggests a certain level of control over the energy input during firing to allow the development of this intermediate phase.
 
 The firing process must be carefully controlled to maintain a favorable balance between benefits and risks throughout production. In the context of Iberian ceramics, the management of thermal parameters is primarily understood as a strategy to utilize calcareous materials without the risk of lime blowing [@petitdominguez2003; @cultrone2011; @cultrone2014]. However, the thermal decomposition of calcium carbonates is a necessary process to achieve the desired characteristics, especially aesthetic qualities.
 
 By incorporating iron, the formation of calcium silicates during firing limits the development of coloration induced by the presence of iron oxides in the matrix. This occurs because iron can be integrated into amorphous or crystalline phases through substitution, rather than remaining as free oxides, thereby affecting its chromogenic properties. The cations Fe^2+^ and Fe^3+^ are incorporated into pyroxenes (preferably in octahedral coordination) through solid-state diffusion, replacing Mg^2+^ and Ca^2+^ ions, or into melilite-group phases (in tetrahedral coordination). This process prevents the formation of spinel compounds [@vedder1969; @nodari2007] and plays a fundamental role in the manufacturing process of Iberian ceramics, as it allows for the attainment of a characteristic pink-colored surface.
 
-Finally, it is worth noting that there appears to be no relationship with chronology (@fig-plot-guttman B). Despite significant workshop modifications, including the adoption of a large amphora kiln that resulted in a shift in production quantities during the final years of the workshop's operation [@gorgues2012], the produced artefacts exhibit consistent mineralogical characteristics.
+Finally, it is worth noting that there appears to be no relationship with chronology (\@ref(fig:fig-plot-guttman)B). Despite significant workshop modifications, including the adoption of a large amphora kiln that resulted in a shift in production quantities during the final years of the workshop's operation [@gorgues2012], the produced artefacts exhibit consistent mineralogical characteristics.
 
 # Conclusion
 
