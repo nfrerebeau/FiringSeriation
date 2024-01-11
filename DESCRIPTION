@@ -1,6 +1,6 @@
 Package: FiringSeriation
 Title: Replication of Frerebeau, N. (2023)
-Version: 1.0.0
+Version: 1.2
 Authors@R:
     person(given = "Nicolas",
            family = "Frerebeau",
